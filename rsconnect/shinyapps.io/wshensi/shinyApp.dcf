@@ -1,0 +1,12 @@
+name: shinyApp
+title: shinyApp
+username: wshensi
+account: wshensi
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 14856818
+bundleId: 10499305
+url: https://wshensi.shinyapps.io/shinyApp/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
