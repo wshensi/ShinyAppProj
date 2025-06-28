@@ -11,6 +11,7 @@ library(plotly)
 library(DT)
 
 # wanganqi Load data
+#yyh
 kg <- fromJSON("data/MC1_graph.json")
 nodes_tbl <- as_tibble(kg$nodes)
 edges_tbl <- as_tibble(kg$links)
