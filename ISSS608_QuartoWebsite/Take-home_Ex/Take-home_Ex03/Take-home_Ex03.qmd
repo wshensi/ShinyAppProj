@@ -4,7 +4,7 @@ description: "Storyboard"
 date: "June 01, 2025"
 date-modified: "June 01, 2025"
 format: html
-author: "Wang Shen Si"
+author: "Wang Anqi, Wang Shensi, Yuan Yihao"
 editor: visual
 execute: 
   eval: true
