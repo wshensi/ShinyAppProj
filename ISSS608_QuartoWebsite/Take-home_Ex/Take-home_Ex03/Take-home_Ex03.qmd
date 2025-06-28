@@ -1,0 +1,22 @@
+---
+title: "Take-home Exercise 3"
+description: "Storyboard"
+date: "June 01, 2025"
+date-modified: "June 01, 2025"
+format: html
+author: "Wang Shen Si"
+editor: visual
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+---
+
+# 📘 Storyboard
+
+This report is part of **Take-home Exercise 3** for ISSS608: Visual Analytics and Applications.
+
+For group consistency and reference, please refer to [Wang Anqi's published version](https://isss608-25t3-anqi.netlify.app/take-home_ex/take-home_ex03/take-home_ex03).
+
+All analyses, code, and visualizations are replicated and extended based on our joint discussion.

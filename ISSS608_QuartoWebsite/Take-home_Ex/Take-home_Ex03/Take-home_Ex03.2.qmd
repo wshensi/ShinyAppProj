@@ -1,0 +1,18 @@
+---
+title: "ShinyApp"
+description: "Interactive Music Network Analysis"
+date: "June 01, 2025"
+date-modified: "June 01, 2025"
+format: html
+author: "Wang Shen Si"
+editor: visual
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+---
+
+<iframe src="https://wshensi.shinyapps.io/shinyApp/" width="100%" height="800px" frameborder="0">
+
+</iframe>

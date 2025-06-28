@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Wang Shen Si">
+<meta name="dcterms.date" content="2025-05-02">
+
+<title>Take-home Exercise 1 – ISSS608-VAA</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="../../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+<script src="../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<link href="../../site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+
+<script src="../../site_libs/datatables-binding-0.33/datatables.js"></script>
+
+<script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+
+<link href="../../site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+
+<link href="../../site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+
+<script src="../../site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+
+<link href="../../site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+
+<script src="../../site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+
+<script src="../../site_libs/d3-bundle-5.16.0/d3-bundle.min.js"></script>
+
+<script src="../../site_libs/d3-lasso-0.0.5/d3-lasso.min.js"></script>
+
+<script src="../../site_libs/save-svg-as-png-1.4.17/save-svg-as-png.min.js"></script>
+
+<script src="../../site_libs/flatbush-4.4.0/flatbush.min.js"></script>
+
+<link href="../../site_libs/ggiraphjs-0.8.10/ggiraphjs.min.css" rel="stylesheet">
+
+<script src="../../site_libs/ggiraphjs-0.8.10/ggiraphjs.min.js"></script>
+
+<script src="../../site_libs/girafe-binding-0.8.13/girafe.js"></script>
+
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">ISSS608-VAA</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-hands-on-exercise" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Hands-on Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-hands-on-exercise">    
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html">
+ <span class="dropdown-text">Exercise 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html">
+ <span class="dropdown-text">Exercise 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03.html">
+ <span class="dropdown-text">Exercise 3 (part 1)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03.2.html">
+ <span class="dropdown-text">Exercise 3 (part 2)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04.1.html">
+ <span class="dropdown-text">Exercise 4 (part 1)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04.2.html">
+ <span class="dropdown-text">Exercise 4 (part 2)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04.3.html">
+ <span class="dropdown-text">Exercise 4 (part 3)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04.4.html">
+ <span class="dropdown-text">Exercise 4 (part 4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05.html">
+ <span class="dropdown-text">Exercise 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex06/Hands-on_Ex06.html">
+ <span class="dropdown-text">Exercise 6</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08.html">
+ <span class="dropdown-text">Exercise 8 (part 1)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08.2.html">
+ <span class="dropdown-text">Exercise 8 (part 2)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08.3.html">
+ <span class="dropdown-text">Exercise 8 (part 3)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09.html">
+ <span class="dropdown-text">Exercise 9 (part 1 &amp; 2)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09.2.html">
+ <span class="dropdown-text">Exercise 9 (part 3, 4 &amp; 5)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex10/Hands-on_Ex10.html">
+ <span class="dropdown-text">Exercise 10</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-in-class-exercise" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">In-class Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-in-class-exercise">    
+        <li>
+    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex01/In-class_Ex01.html">
+ <span class="dropdown-text">Exercise 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex03/In-class_Ex03.html">
+ <span class="dropdown-text">Exercise 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../In-class_Ex/In-class_Ex05/In-class_Ex05.html">
+ <span class="dropdown-text">Exercise 5</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-take-home-exercise" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Take-home Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-take-home-exercise">    
+        <li>
+    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html">
+ <span class="dropdown-text">Exercise 1 (Part 1)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex01/Take-home_Ex01.2.html">
+ <span class="dropdown-text">Exercise 1 (Part 2)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html">
+ <span class="dropdown-text">Exercise 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex03/Take-home_Ex03.html">
+ <span class="dropdown-text">Exercise 3</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-shinyapp" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">ShinyApp</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-shinyapp">    
+        <li>
+    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex03/Take-home_Ex03.2.html">
+ <span class="dropdown-text">Interactive Music Network Analysis</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">ISSS608-VAA- About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Page Contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a>
+  <ul class="collapse">
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background"><span class="header-section-number">1.1</span> Background</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives"><span class="header-section-number">1.2</span> Objectives</a></li>
+  </ul></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started"><span class="header-section-number">2</span> Getting Started</a>
+  <ul class="collapse">
+  <li><a href="#tools-used" id="toc-tools-used" class="nav-link" data-scroll-target="#tools-used"><span class="header-section-number">2.1</span> Tools Used</a></li>
+  <li><a href="#data-source" id="toc-data-source" class="nav-link" data-scroll-target="#data-source"><span class="header-section-number">2.2</span> Data Source</a></li>
+  </ul></li>
+  <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling"><span class="header-section-number">3</span> Data Wrangling</a>
+  <ul class="collapse">
+  <li><a href="#import-data" id="toc-import-data" class="nav-link" data-scroll-target="#import-data"><span class="header-section-number">3.1</span> Import Data</a></li>
+  <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link" data-scroll-target="#data-cleaning"><span class="header-section-number">3.2</span> Data Cleaning</a></li>
+  </ul></li>
+  <li><a href="#exploratory-data-analysis-eda" id="toc-exploratory-data-analysis-eda" class="nav-link" data-scroll-target="#exploratory-data-analysis-eda"><span class="header-section-number">4</span> Exploratory Data Analysis (EDA)</a>
+  <ul class="collapse">
+  <li><a href="#population-pyramid-of-singapore-by-age-group" id="toc-population-pyramid-of-singapore-by-age-group" class="nav-link" data-scroll-target="#population-pyramid-of-singapore-by-age-group"><span class="header-section-number">4.1</span> Population Pyramid of Singapore by Age Group</a></li>
+  <li><a href="#gender-ratio-by-planning-area" id="toc-gender-ratio-by-planning-area" class="nav-link" data-scroll-target="#gender-ratio-by-planning-area"><span class="header-section-number">4.2</span> Gender Ratio by Planning Area</a></li>
+  <li><a href="#total-population-by-planning-area" id="toc-total-population-by-planning-area" class="nav-link" data-scroll-target="#total-population-by-planning-area"><span class="header-section-number">4.3</span> Total Population by Planning Area</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">5</span> Summary</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">6</span> Conclusion</a>
+  <ul class="collapse">
+  <li><a href="#conclusion-1" id="toc-conclusion-1" class="nav-link" data-scroll-target="#conclusion-1"><span class="header-section-number">6.1</span> Conclusion</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Take-home Exercise 1</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Wang Shen Si </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 2, 2025</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">May 4, 2025</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<section id="background" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="background"><span class="header-section-number">1.1</span> Background</h2>
+<p>Singapore is a highly urbanized and densely populated nation, where population distribution varies significantly across regions and demographic groups. Gaining insights into these spatial and age-related patterns is critical for informed urban planning, resource allocation, and policy formulation.</p>
+</section>
+<section id="objectives" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="objectives"><span class="header-section-number">1.2</span> Objectives</h2>
+<p>This take-home exercise aims to uncover key demographic insights from Singapore’s 2024 resident population dataset. Specifically, it seeks to:</p>
+<ul>
+<li><p>Analyze the age structure across planning areas</p></li>
+<li><p>Explore gender ratios across different regions</p></li>
+<li><p>Identify regions with higher concentrations of children or elderly residents</p></li>
+</ul>
+</section>
+</section>
+<section id="getting-started" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Getting Started</h1>
+<section id="tools-used" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="tools-used"><span class="header-section-number">2.1</span> Tools Used</h2>
+<p>The following R packages were utilized for data pre-processing and visualization:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(plotly, tidyverse, DT, ggiraph, patchwork, ggstatsplot, GGally, corrplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><p><strong><code>tidyverse</code></strong>: Provides a collection of packages (including <code>dplyr</code>, <code>ggplot2</code>, <code>readr</code>) for data manipulation, transformation, and visualization. It forms the core of data wrangling and plotting throughout this analysis.</p></li>
+<li><p><strong><code>ggiraph</code></strong>: Enables interactive versions of <code>ggplot2</code> graphics, allowing for tooltips and hover interactions in visualizations such as the population pyramid and bar charts.</p></li>
+<li><p><strong><code>plotly</code></strong>: Used to render interactive <code>ggplot</code> outputs in cases like <code>ggplotly()</code> if included (though in your shared code, the output rendering is primarily done via <code>girafe()</code> from <code>ggiraph</code>).</p></li>
+<li><p><strong><code>DT</code></strong>: Provides a wrapper for the JavaScript DataTables library. It is used to display interactive, searchable, and scrollable HTML tables, useful for previewing datasets after each cleaning step.</p></li>
+<li><p><strong><code>patchwork</code></strong>: A layout manager for combining multiple <code>ggplot2</code> plots into a cohesive visual grid using a simple and expressive syntax like <code>plot1 + plot2</code>. It helps in creating dashboards or side-by-side comparisons.</p></li>
+<li><p><strong><code>ggstatsplot</code></strong>: Simplifies statistical visualization by integrating results such as p-values, effect sizes, and confidence intervals directly into <code>ggplot2</code> charts. Useful for comparing group differences and testing statistical significance visually.</p></li>
+<li><p><strong><code>GGally</code></strong>: Extends <code>ggplot2</code> by adding functions like <code>ggpairs()</code> for plotting pairwise relationships between variables. It is particularly useful in exploratory data analysis to visualize correlations and distributions across multiple dimensions.</p></li>
+<li><p><strong><code>corrplot</code></strong>: Specializes in visualizing correlation matrices through heatmaps, circle plots, and color gradients. Helps in identifying variable relationships and multicollinearity in datasets.</p></li>
+</ul>
+</section>
+<section id="data-source" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="data-source"><span class="header-section-number">2.2</span> Data Source</h2>
+<p>The dataset originates from Singapore’s Department of Statistics (DOS) and contains:</p>
+<ul>
+<li><code>PA</code>: Planning Area</li>
+<li><code>SZ</code>: Subzone</li>
+<li><code>Age</code>: Age (ranging from 0 to 100+)</li>
+<li><code>Sex</code>: Gender (Males / Females)</li>
+<li><code>Pop</code>: Number of residents</li>
+<li><code>Time</code>: Year of observation (2024)</li>
+</ul>
+</section>
+</section>
+<section id="data-wrangling" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Data Wrangling</h1>
+<section id="import-data" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="import-data"><span class="header-section-number">3.1</span> Import Data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>respop <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/respopagesex2024.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="image/image1.png" class="img-fluid"></p>
+</section>
+<section id="data-cleaning" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="data-cleaning"><span class="header-section-number">3.2</span> Data Cleaning</h2>
+<p>To ensure the dataset is clean and ready for analysis, the following steps were performed:</p>
+<section id="step-1-remove-duplicates" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="step-1-remove-duplicates"><span class="header-section-number">3.2.1</span> Step 1: Remove Duplicates</h3>
+<p>Remove any duplicated rows to avoid double-counting:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">The Code Chunk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Data Table</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>respop <span class="ot">&lt;-</span> <span class="fu">distinct</span>(respop)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(<span class="fu">head</span>(respop), <span class="at">options =</span> <span class="fu">list</span>(<span class="at">scrollX =</span> <span class="cn">TRUE</span>), <span class="at">caption =</span> <span class="st">"After Removing Duplicates"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-106de9fe77f75ce4bd4d" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-106de9fe77f75ce4bd4d">{"x":{"filter":"none","vertical":false,"caption":"<caption>After Removing Duplicates<\/caption>","data":[["1","2","3","4","5","6"],["Ang Mo Kio","Ang Mo Kio","Ang Mo Kio","Ang Mo Kio","Ang Mo Kio","Ang Mo Kio"],["Ang Mo Kio Town Centre","Ang Mo Kio Town Centre","Ang Mo Kio Town Centre","Ang Mo Kio Town Centre","Ang Mo Kio Town Centre","Ang Mo Kio Town Centre"],["0","0","1","1","2","2"],["Males","Females","Males","Females","Males","Females"],[10,10,10,10,10,10],[2024,2024,2024,2024,2024,2024]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>PA<\/th>\n      <th>SZ<\/th>\n      <th>Age<\/th>\n      <th>Sex<\/th>\n      <th>Pop<\/th>\n      <th>Time<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"PA","targets":1},{"name":"SZ","targets":2},{"name":"Age","targets":3},{"name":"Sex","targets":4},{"name":"Pop","targets":5},{"name":"Time","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-2-handle-missing-values" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="step-2-handle-missing-values"><span class="header-section-number">3.2.2</span> Step 2: Handle Missing Values</h3>
+<p>Ensure there are no missing or malformed entries in critical columns:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">The Code Chunk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Data Table</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>respop <span class="ot">&lt;-</span> <span class="fu">drop_na</span>(respop)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(<span class="fu">head</span>(respop), <span class="at">options =</span> <span class="fu">list</span>(<span class="at">scrollX =</span> <span class="cn">TRUE</span>), <span class="at">caption =</span> <span class="st">"After Dropping Missing Values"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-a27689538206c9c62036" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-a27689538206c9c62036">{"x":{"filter":"none","vertical":false,"caption":"<caption>After Dropping Missing Values<\/caption>","data":[["1","2","3","4","5","6"],["Ang Mo Kio","Ang Mo Kio","Ang Mo Kio","Ang Mo Kio","Ang Mo Kio","Ang Mo Kio"],["Ang Mo Kio Town Centre","Ang Mo Kio Town Centre","Ang Mo Kio Town Centre","Ang Mo Kio Town Centre","Ang Mo Kio Town Centre","Ang Mo Kio Town Centre"],["0","0","1","1","2","2"],["Males","Females","Males","Females","Males","Females"],[10,10,10,10,10,10],[2024,2024,2024,2024,2024,2024]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>PA<\/th>\n      <th>SZ<\/th>\n      <th>Age<\/th>\n      <th>Sex<\/th>\n      <th>Pop<\/th>\n      <th>Time<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"PA","targets":1},{"name":"SZ","targets":2},{"name":"Age","targets":3},{"name":"Sex","targets":4},{"name":"Pop","targets":5},{"name":"Time","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-3-standardize-age-format" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="step-3-standardize-age-format"><span class="header-section-number">3.2.3</span> Step 3: Standardize Age Format</h3>
+<p>The <code>Age</code> column includes a non-numeric category <code>"90_and_Over"</code> which cannot be coerced into an integer. We convert this category into a numeric age of <strong>90</strong>, representing a minimum estimate for analysis:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">The Code Chunk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Data Table</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>respop <span class="ot">&lt;-</span> respop <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Age =</span> <span class="fu">ifelse</span>(Age <span class="sc">==</span> <span class="st">"90_and_Over"</span>, <span class="st">"90"</span>, Age),</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">Age =</span> <span class="fu">as.integer</span>(Age))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(<span class="fu">head</span>(respop), <span class="at">options =</span> <span class="fu">list</span>(<span class="at">scrollX =</span> <span class="cn">TRUE</span>), <span class="at">caption =</span> <span class="st">"After Converting Age Format"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-9f0e935a5b990c65e20b" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-9f0e935a5b990c65e20b">{"x":{"filter":"none","vertical":false,"caption":"<caption>After Converting Age Format<\/caption>","data":[["1","2","3","4","5","6"],["Ang Mo Kio","Ang Mo Kio","Ang Mo Kio","Ang Mo Kio","Ang Mo Kio","Ang Mo Kio"],["Ang Mo Kio Town Centre","Ang Mo Kio Town Centre","Ang Mo Kio Town Centre","Ang Mo Kio Town Centre","Ang Mo Kio Town Centre","Ang Mo Kio Town Centre"],[0,0,1,1,2,2],["Males","Females","Males","Females","Males","Females"],[10,10,10,10,10,10],[2024,2024,2024,2024,2024,2024]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>PA<\/th>\n      <th>SZ<\/th>\n      <th>Age<\/th>\n      <th>Sex<\/th>\n      <th>Pop<\/th>\n      <th>Time<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[3,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"PA","targets":1},{"name":"SZ","targets":2},{"name":"Age","targets":3},{"name":"Sex","targets":4},{"name":"Pop","targets":5},{"name":"Time","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This allows us to include elderly population data in age-based analyses such as population pyramids and dependency ratios.</p>
+</div>
+</div>
+</section>
+<section id="step-4-convert-column-types" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="step-4-convert-column-types"><span class="header-section-number">3.2.4</span> Step 4: Convert Column Types</h3>
+<p>Ensure categorical and numeric columns are properly formatted:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">The Code Chunk</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Data Table</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>respop <span class="ot">&lt;-</span> respop <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Sex =</span> <span class="fu">as.factor</span>(Sex),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">PA =</span> <span class="fu">as.factor</span>(PA),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">SZ =</span> <span class="fu">as.factor</span>(SZ)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(<span class="fu">head</span>(respop), <span class="at">options =</span> <span class="fu">list</span>(<span class="at">scrollX =</span> <span class="cn">TRUE</span>), <span class="at">caption =</span> <span class="st">"After Converting Column Types"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-bf96aff7e2ad7679eb51" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-bf96aff7e2ad7679eb51">{"x":{"filter":"none","vertical":false,"caption":"<caption>After Converting Column Types<\/caption>","data":[["1","2","3","4","5","6"],["Ang Mo Kio","Ang Mo Kio","Ang Mo Kio","Ang Mo Kio","Ang Mo Kio","Ang Mo Kio"],["Ang Mo Kio Town Centre","Ang Mo Kio Town Centre","Ang Mo Kio Town Centre","Ang Mo Kio Town Centre","Ang Mo Kio Town Centre","Ang Mo Kio Town Centre"],[0,0,1,1,2,2],["Males","Females","Males","Females","Males","Females"],[10,10,10,10,10,10],[2024,2024,2024,2024,2024,2024]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>PA<\/th>\n      <th>SZ<\/th>\n      <th>Age<\/th>\n      <th>Sex<\/th>\n      <th>Pop<\/th>\n      <th>Time<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[3,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"PA","targets":1},{"name":"SZ","targets":2},{"name":"Age","targets":3},{"name":"Sex","targets":4},{"name":"Pop","targets":5},{"name":"Time","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="exploratory-data-analysis-eda" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Exploratory Data Analysis (EDA)</h1>
+<p>This section explores Singapore’s 2024 resident population by analyzing age structure, gender ratios, and total population distribution across planning areas. All visualizations use techniques introduced during our hands-on exercises.</p>
+<section id="population-pyramid-of-singapore-by-age-group" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="population-pyramid-of-singapore-by-age-group"><span class="header-section-number">4.1</span> Population Pyramid of Singapore by Age Group</h2>
+<p>This section creates an <strong>interactive population pyramid</strong> for the entire Singapore resident population in 2024. It groups ages into 5-year intervals and displays male and female populations using diverging bars. Tooltips appear when hovering over each bar.</p>
+<section id="step-1-load-libraries" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="step-1-load-libraries"><span class="header-section-number">4.1.1</span> Step 1: Load Libraries</h3>
+<p>We use <code>tidyverse</code> for data manipulation and <code>ggiraph</code> for interactive plotting.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggiraph)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-2-prepare-population-pyramid-data-with-age-groups-and-tooltips" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="step-2-prepare-population-pyramid-data-with-age-groups-and-tooltips"><span class="header-section-number">4.1.2</span> Step 2: Prepare Population Pyramid Data with Age Groups and Tooltips</h3>
+<ul>
+<li><p>Convert age to numeric;</p></li>
+<li><p>Bin ages into groups like <code>"0–4"</code>, <code>"5–9"</code>, …;</p></li>
+<li><p>Summarize population by <code>Sex</code> and <code>AgeGrp</code>;</p></li>
+<li><p>Make male population negative to mirror the pyramid;</p></li>
+<li><p>Add a <code>tooltip_text</code> column for interactive tooltips.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pyramid_sg <span class="ot">&lt;-</span> respop <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Age =</span> <span class="fu">as.numeric</span>(Age),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">AgeGrp =</span> <span class="fu">cut</span>(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>      Age,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">9</span>, <span class="dv">14</span>, <span class="dv">19</span>, <span class="dv">24</span>, <span class="dv">29</span>, <span class="dv">34</span>, <span class="dv">39</span>, <span class="dv">44</span>, <span class="dv">49</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                 <span class="dv">54</span>, <span class="dv">59</span>, <span class="dv">64</span>, <span class="dv">69</span>, <span class="dv">74</span>, <span class="dv">79</span>, <span class="dv">84</span>, <span class="dv">89</span>, <span class="dv">94</span>, <span class="dv">99</span>, <span class="cn">Inf</span>),</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"0-4"</span>, <span class="st">"5-9"</span>, <span class="st">"10-14"</span>, <span class="st">"15-19"</span>, <span class="st">"20-24"</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"25-29"</span>, <span class="st">"30-34"</span>, <span class="st">"35-39"</span>, <span class="st">"40-44"</span>, <span class="st">"45-49"</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"50-54"</span>, <span class="st">"55-59"</span>, <span class="st">"60-64"</span>, <span class="st">"65-69"</span>, <span class="st">"70-74"</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"75-79"</span>, <span class="st">"80-84"</span>, <span class="st">"85-89"</span>, <span class="st">"90-94"</span>, <span class="st">"95-99"</span>, <span class="st">"100+"</span>),</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">right =</span> <span class="cn">FALSE</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Sex, AgeGrp) <span class="sc">%&gt;%</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Pop =</span> <span class="fu">sum</span>(Pop), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">Pop_signed =</span> <span class="fu">ifelse</span>(Sex <span class="sc">==</span> <span class="st">"Males"</span>, <span class="sc">-</span>Pop, Pop),</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">Label =</span> <span class="fu">paste0</span>(<span class="fu">round</span>(Pop <span class="sc">/</span> <span class="dv">1000</span>), <span class="st">"k"</span>),</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">tooltip_text =</span> <span class="fu">paste0</span>(<span class="st">"Age Group: "</span>, AgeGrp,</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"&lt;br&gt;Sex: "</span>, Sex,</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"&lt;br&gt;Population: "</span>, <span class="fu">format</span>(Pop, <span class="at">big.mark =</span> <span class="st">","</span>))</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-3-build-interactive-ggplot-object" class="level3" data-number="4.1.3">
+<h3 data-number="4.1.3" class="anchored" data-anchor-id="step-3-build-interactive-ggplot-object"><span class="header-section-number">4.1.3</span> Step 3: Build Interactive ggplot Object</h3>
+<p>We use <code>geom_bar_interactive()</code> from <code>ggiraph</code> to: Create diverging bars (left = males, right = females), Attach the tooltip text, Color-code by gender.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>max_val <span class="ot">&lt;-</span> <span class="fu">max</span>(pyramid_sg<span class="sc">$</span>Pop)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>pyramid_male <span class="ot">&lt;-</span> pyramid_sg <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="st">"Males"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>pyramid_female <span class="ot">&lt;-</span> pyramid_sg <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="st">"Females"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>gg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pyramid_sg, <span class="fu">aes</span>(<span class="at">x =</span> AgeGrp, <span class="at">y =</span> Pop_signed, <span class="at">fill =</span> Sex,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                             <span class="at">tooltip =</span> tooltip_text, <span class="at">data_id =</span> AgeGrp)) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar_interactive</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">width =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> pyramid_male,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">label =</span> Label),</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="fl">1.1</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> pyramid_female,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">label =</span> Label),</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.1</span> <span class="sc">*</span> max_val, <span class="fl">1.1</span> <span class="sc">*</span> max_val),</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="sc">~</span> <span class="fu">paste0</span>(<span class="fu">abs</span>(.x <span class="sc">/</span> <span class="dv">1000</span>), <span class="st">"k"</span>)) <span class="sc">+</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Males"</span> <span class="ot">=</span> <span class="st">"#1f77b4"</span>, <span class="st">"Females"</span> <span class="ot">=</span> <span class="st">"#ff7f0e"</span>)) <span class="sc">+</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Interactive Population Pyramid of Singapore (2024)"</span>,</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Age Group"</span>, <span class="at">y =</span> <span class="st">"Population"</span>, <span class="at">fill =</span> <span class="st">"Sex"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-4-render-as-interactive-widget" class="level3" data-number="4.1.4">
+<h3 data-number="4.1.4" class="anchored" data-anchor-id="step-4-render-as-interactive-widget"><span class="header-section-number">4.1.4</span> Step 4: Render as Interactive Widget</h3>
+<p>We finally call <code>girafe()</code> to render the interactive graphic. We also customize the tooltip style using CSS.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">girafe</span>(<span class="at">ggobj =</span> gg,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">width_svg =</span> <span class="dv">8</span>, <span class="at">height_svg =</span> <span class="dv">6</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>         <span class="fu">opts_tooltip</span>(<span class="at">css =</span> <span class="st">"background-color:white; color:black; border:1px solid gray; padding:5px;"</span>),</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>         <span class="fu">opts_hover</span>(<span class="at">css =</span> <span class="st">"fill-opacity:0.8;cursor:pointer;"</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>       ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="girafe html-widget html-fill-item" id="htmlwidget-d365dcb423558d41344e" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-d365dcb423558d41344e">{"x":{"html":"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='ggiraph-svg' role='graphics-document' id='svg_89cdc497_9476_404a_a231_a0a037c86127' viewBox='0 0 576 432'>\n <defs id='svg_89cdc497_9476_404a_a231_a0a037c86127_defs'>\n  <clipPath id='svg_89cdc497_9476_404a_a231_a0a037c86127_c1'>\n   <rect x='0' y='0' width='576' height='432'/>\n  <\/clipPath>\n  <clipPath id='svg_89cdc497_9476_404a_a231_a0a037c86127_c2'>\n   <rect x='45.86' y='23.18' width='446.24' height='377.33'/>\n  <\/clipPath>\n <\/defs>\n <g id='svg_89cdc497_9476_404a_a231_a0a037c86127_rootg' class='ggiraph-svg-rootg'>\n  <g clip-path='url(#svg_89cdc497_9476_404a_a231_a0a037c86127_c1)'>\n   <rect x='0' y='0' width='576' height='432' fill='#FFFFFF' fill-opacity='1' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.75' stroke-linejoin='round' stroke-linecap='round' class='ggiraph-svg-bg'/>\n  <\/g>\n  <g clip-path='url(#svg_89cdc497_9476_404a_a231_a0a037c86127_c2)'>\n   <polyline points='103.42,400.50 103.42,23.18' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='213.80,400.50 213.80,23.18' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='324.17,400.50 324.17,23.18' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='434.54,400.50 434.54,23.18' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='45.86,388.71 492.10,388.71' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='45.86,369.06 492.10,369.06' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='45.86,349.41 492.10,349.41' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='45.86,329.76 492.10,329.76' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='45.86,310.10 492.10,310.10' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='45.86,290.45 492.10,290.45' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='45.86,270.80 492.10,270.80' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='45.86,251.15 492.10,251.15' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='45.86,231.49 492.10,231.49' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='45.86,211.84 492.10,211.84' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='45.86,192.19 492.10,192.19' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='45.86,172.54 492.10,172.54' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='45.86,152.88 492.10,152.88' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='45.86,133.23 492.10,133.23' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='45.86,113.58 492.10,113.58' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='45.86,93.93 492.10,93.93' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='45.86,74.27 492.10,74.27' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='45.86,54.62 492.10,54.62' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='45.86,34.97 492.10,34.97' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='48.24,400.50 48.24,23.18' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='158.61,400.50 158.61,23.18' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='268.98,400.50 268.98,23.18' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='379.35,400.50 379.35,23.18' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='489.73,400.50 489.73,23.18' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e1' x='268.98' y='380.85' width='71.17' height='15.72' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Age Group: 0-4&amp;lt;br&amp;gt;Sex: Females&amp;lt;br&amp;gt;Population:  64,480' data-id='0-4'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e2' x='268.98' y='361.2' width='107.48' height='15.72' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Age Group: 5-9&amp;lt;br&amp;gt;Sex: Females&amp;lt;br&amp;gt;Population:  97,380' data-id='5-9'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e3' x='268.98' y='341.55' width='111.38' height='15.72' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Age Group: 10-14&amp;lt;br&amp;gt;Sex: Females&amp;lt;br&amp;gt;Population: 100,910' data-id='10-14'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e4' x='268.98' y='321.89' width='114.75' height='15.72' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Age Group: 15-19&amp;lt;br&amp;gt;Sex: Females&amp;lt;br&amp;gt;Population: 103,970' data-id='15-19'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e5' x='268.98' y='302.24' width='118.65' height='15.72' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Age Group: 20-24&amp;lt;br&amp;gt;Sex: Females&amp;lt;br&amp;gt;Population: 107,500' data-id='20-24'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e6' x='268.98' y='282.59' width='141.87' height='15.72' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Age Group: 25-29&amp;lt;br&amp;gt;Sex: Females&amp;lt;br&amp;gt;Population: 128,540' data-id='25-29'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e7' x='268.98' y='262.94' width='178.73' height='15.72' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Age Group: 30-34&amp;lt;br&amp;gt;Sex: Females&amp;lt;br&amp;gt;Population: 161,930' data-id='30-34'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e8' x='268.98' y='243.28' width='184.4' height='15.72' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Age Group: 35-39&amp;lt;br&amp;gt;Sex: Females&amp;lt;br&amp;gt;Population: 167,070' data-id='35-39'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e9' x='268.98' y='223.63' width='181.96' height='15.72' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Age Group: 40-44&amp;lt;br&amp;gt;Sex: Females&amp;lt;br&amp;gt;Population: 164,860' data-id='40-44'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e10' x='268.98' y='203.98' width='175.3' height='15.72' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Age Group: 45-49&amp;lt;br&amp;gt;Sex: Females&amp;lt;br&amp;gt;Population: 158,830' data-id='45-49'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e11' x='268.98' y='184.33' width='176.79' height='15.72' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Age Group: 50-54&amp;lt;br&amp;gt;Sex: Females&amp;lt;br&amp;gt;Population: 160,180' data-id='50-54'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e12' x='268.98' y='164.67' width='164.79' height='15.72' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Age Group: 55-59&amp;lt;br&amp;gt;Sex: Females&amp;lt;br&amp;gt;Population: 149,300' data-id='55-59'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e13' x='268.98' y='145.02' width='166.37' height='15.72' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Age Group: 60-64&amp;lt;br&amp;gt;Sex: Females&amp;lt;br&amp;gt;Population: 150,740' data-id='60-64'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e14' x='268.98' y='125.37' width='154.71' height='15.72' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Age Group: 65-69&amp;lt;br&amp;gt;Sex: Females&amp;lt;br&amp;gt;Population: 140,170' data-id='65-69'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e15' x='268.98' y='105.72' width='124.75' height='15.72' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Age Group: 70-74&amp;lt;br&amp;gt;Sex: Females&amp;lt;br&amp;gt;Population: 113,030' data-id='70-74'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e16' x='268.98' y='86.07' width='93.41' height='15.72' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Age Group: 75-79&amp;lt;br&amp;gt;Sex: Females&amp;lt;br&amp;gt;Population:  84,630' data-id='75-79'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e17' x='268.98' y='66.41' width='49.76' height='15.72' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Age Group: 80-84&amp;lt;br&amp;gt;Sex: Females&amp;lt;br&amp;gt;Population:  45,080' data-id='80-84'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e18' x='268.98' y='46.76' width='34.65' height='15.72' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Age Group: 85-89&amp;lt;br&amp;gt;Sex: Females&amp;lt;br&amp;gt;Population:  31,390' data-id='85-89'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e19' x='268.98' y='27.11' width='24.35' height='15.72' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Age Group: 90-94&amp;lt;br&amp;gt;Sex: Females&amp;lt;br&amp;gt;Population:  22,060' data-id='90-94'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e20' x='193.96' y='380.85' width='75.02' height='15.72' fill='#1F77B4' fill-opacity='1' stroke='none' title='Age Group: 0-4&amp;lt;br&amp;gt;Sex: Males&amp;lt;br&amp;gt;Population:  67,970' data-id='0-4'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e21' x='156.62' y='361.2' width='112.36' height='15.72' fill='#1F77B4' fill-opacity='1' stroke='none' title='Age Group: 5-9&amp;lt;br&amp;gt;Sex: Males&amp;lt;br&amp;gt;Population: 101,800' data-id='5-9'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e22' x='152.4' y='341.55' width='116.59' height='15.72' fill='#1F77B4' fill-opacity='1' stroke='none' title='Age Group: 10-14&amp;lt;br&amp;gt;Sex: Males&amp;lt;br&amp;gt;Population: 105,630' data-id='10-14'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e23' x='150.44' y='321.89' width='118.54' height='15.72' fill='#1F77B4' fill-opacity='1' stroke='none' title='Age Group: 15-19&amp;lt;br&amp;gt;Sex: Males&amp;lt;br&amp;gt;Population: 107,400' data-id='15-19'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e24' x='146.11' y='302.24' width='122.88' height='15.72' fill='#1F77B4' fill-opacity='1' stroke='none' title='Age Group: 20-24&amp;lt;br&amp;gt;Sex: Males&amp;lt;br&amp;gt;Population: 111,330' data-id='20-24'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e25' x='125.05' y='282.59' width='143.94' height='15.72' fill='#1F77B4' fill-opacity='1' stroke='none' title='Age Group: 25-29&amp;lt;br&amp;gt;Sex: Males&amp;lt;br&amp;gt;Population: 130,410' data-id='25-29'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e26' x='99.11' y='262.94' width='169.87' height='15.72' fill='#1F77B4' fill-opacity='1' stroke='none' title='Age Group: 30-34&amp;lt;br&amp;gt;Sex: Males&amp;lt;br&amp;gt;Population: 153,910' data-id='30-34'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e27' x='101.89' y='243.28' width='167.09' height='15.72' fill='#1F77B4' fill-opacity='1' stroke='none' title='Age Group: 35-39&amp;lt;br&amp;gt;Sex: Males&amp;lt;br&amp;gt;Population: 151,390' data-id='35-39'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e28' x='107.06' y='223.63' width='161.93' height='15.72' fill='#1F77B4' fill-opacity='1' stroke='none' title='Age Group: 40-44&amp;lt;br&amp;gt;Sex: Males&amp;lt;br&amp;gt;Population: 146,710' data-id='40-44'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e29' x='109.75' y='203.98' width='159.23' height='15.72' fill='#1F77B4' fill-opacity='1' stroke='none' title='Age Group: 45-49&amp;lt;br&amp;gt;Sex: Males&amp;lt;br&amp;gt;Population: 144,270' data-id='45-49'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e30' x='102.84' y='184.33' width='166.14' height='15.72' fill='#1F77B4' fill-opacity='1' stroke='none' title='Age Group: 50-54&amp;lt;br&amp;gt;Sex: Males&amp;lt;br&amp;gt;Population: 150,530' data-id='50-54'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e31' x='111.29' y='164.67' width='157.69' height='15.72' fill='#1F77B4' fill-opacity='1' stroke='none' title='Age Group: 55-59&amp;lt;br&amp;gt;Sex: Males&amp;lt;br&amp;gt;Population: 142,870' data-id='55-59'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e32' x='104.83' y='145.02' width='164.16' height='15.72' fill='#1F77B4' fill-opacity='1' stroke='none' title='Age Group: 60-64&amp;lt;br&amp;gt;Sex: Males&amp;lt;br&amp;gt;Population: 148,730' data-id='60-64'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e33' x='119.23' y='125.37' width='149.75' height='15.72' fill='#1F77B4' fill-opacity='1' stroke='none' title='Age Group: 65-69&amp;lt;br&amp;gt;Sex: Males&amp;lt;br&amp;gt;Population: 135,680' data-id='65-69'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e34' x='152.56' y='105.72' width='116.42' height='15.72' fill='#1F77B4' fill-opacity='1' stroke='none' title='Age Group: 70-74&amp;lt;br&amp;gt;Sex: Males&amp;lt;br&amp;gt;Population: 105,480' data-id='70-74'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e35' x='188.49' y='86.07' width='80.49' height='15.72' fill='#1F77B4' fill-opacity='1' stroke='none' title='Age Group: 75-79&amp;lt;br&amp;gt;Sex: Males&amp;lt;br&amp;gt;Population:  72,930' data-id='75-79'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e36' x='231.62' y='66.41' width='37.36' height='15.72' fill='#1F77B4' fill-opacity='1' stroke='none' title='Age Group: 80-84&amp;lt;br&amp;gt;Sex: Males&amp;lt;br&amp;gt;Population:  33,850' data-id='80-84'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e37' x='246.59' y='46.76' width='22.39' height='15.72' fill='#1F77B4' fill-opacity='1' stroke='none' title='Age Group: 85-89&amp;lt;br&amp;gt;Sex: Males&amp;lt;br&amp;gt;Population:  20,290' data-id='85-89'/>\n   <rect id='svg_89cdc497_9476_404a_a231_a0a037c86127_e38' x='257.61' y='27.11' width='11.37' height='15.72' fill='#1F77B4' fill-opacity='1' stroke='none' title='Age Group: 90-94&amp;lt;br&amp;gt;Sex: Males&amp;lt;br&amp;gt;Population:  10,300' data-id='90-94'/>\n   <text x='178.83' y='391.77' font-size='6.4pt' font-family='Arial'>68k<\/text>\n   <text x='136.27' y='372.12' font-size='6.4pt' font-family='Arial'>102k<\/text>\n   <text x='132.04' y='352.46' font-size='6.4pt' font-family='Arial'>106k<\/text>\n   <text x='130.09' y='332.81' font-size='6.4pt' font-family='Arial'>107k<\/text>\n   <text x='127.14' y='313.16' font-size='6.4pt' font-family='Arial'>111k<\/text>\n   <text x='104.69' y='293.51' font-size='6.4pt' font-family='Arial'>130k<\/text>\n   <text x='78.75' y='273.85' font-size='6.4pt' font-family='Arial'>154k<\/text>\n   <text x='81.54' y='254.2' font-size='6.4pt' font-family='Arial'>151k<\/text>\n   <text x='86.7' y='234.55' font-size='6.4pt' font-family='Arial'>147k<\/text>\n   <text x='89.39' y='214.9' font-size='6.4pt' font-family='Arial'>144k<\/text>\n   <text x='82.49' y='195.24' font-size='6.4pt' font-family='Arial'>151k<\/text>\n   <text x='90.94' y='175.59' font-size='6.4pt' font-family='Arial'>143k<\/text>\n   <text x='84.47' y='155.94' font-size='6.4pt' font-family='Arial'>149k<\/text>\n   <text x='98.88' y='136.29' font-size='6.4pt' font-family='Arial'>136k<\/text>\n   <text x='132.21' y='116.63' font-size='6.4pt' font-family='Arial'>105k<\/text>\n   <text x='173.35' y='96.98' font-size='6.4pt' font-family='Arial'>73k<\/text>\n   <text x='216.49' y='77.33' font-size='6.4pt' font-family='Arial'>34k<\/text>\n   <text x='231.45' y='57.68' font-size='6.4pt' font-family='Arial'>20k<\/text>\n   <text x='242.48' y='38.03' font-size='6.4pt' font-family='Arial'>10k<\/text>\n   <text x='341.53' y='391.77' font-size='6.4pt' font-family='Arial'>64k<\/text>\n   <text x='377.84' y='372.12' font-size='6.4pt' font-family='Arial'>97k<\/text>\n   <text x='382.21' y='352.46' font-size='6.4pt' font-family='Arial'>101k<\/text>\n   <text x='385.59' y='332.81' font-size='6.4pt' font-family='Arial'>104k<\/text>\n   <text x='389.48' y='313.16' font-size='6.4pt' font-family='Arial'>108k<\/text>\n   <text x='412.7' y='293.51' font-size='6.4pt' font-family='Arial'>129k<\/text>\n   <text x='449.56' y='273.85' font-size='6.4pt' font-family='Arial'>162k<\/text>\n   <text x='455.23' y='254.2' font-size='6.4pt' font-family='Arial'>167k<\/text>\n   <text x='452.79' y='234.55' font-size='6.4pt' font-family='Arial'>165k<\/text>\n   <text x='446.14' y='214.9' font-size='6.4pt' font-family='Arial'>159k<\/text>\n   <text x='447.63' y='195.24' font-size='6.4pt' font-family='Arial'>160k<\/text>\n   <text x='435.62' y='175.59' font-size='6.4pt' font-family='Arial'>149k<\/text>\n   <text x='437.21' y='155.94' font-size='6.4pt' font-family='Arial'>151k<\/text>\n   <text x='425.54' y='136.29' font-size='6.4pt' font-family='Arial'>140k<\/text>\n   <text x='395.52' y='116.63' font-size='6.4pt' font-family='Arial'>113k<\/text>\n   <text x='363.77' y='96.98' font-size='6.4pt' font-family='Arial'>85k<\/text>\n   <text x='320.11' y='77.33' font-size='6.4pt' font-family='Arial'>45k<\/text>\n   <text x='305' y='57.68' font-size='6.4pt' font-family='Arial'>31k<\/text>\n   <text x='294.71' y='38.03' font-size='6.4pt' font-family='Arial'>22k<\/text>\n  <\/g>\n  <g clip-path='url(#svg_89cdc497_9476_404a_a231_a0a037c86127_c1)'>\n   <text x='28.21' y='391.86' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>0-4<\/text>\n   <text x='28.21' y='372.21' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>5-9<\/text>\n   <text x='18.41' y='352.56' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>10-14<\/text>\n   <text x='18.41' y='332.91' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>15-19<\/text>\n   <text x='18.41' y='313.25' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>20-24<\/text>\n   <text x='18.41' y='293.6' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>25-29<\/text>\n   <text x='18.41' y='273.95' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>30-34<\/text>\n   <text x='18.41' y='254.3' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>35-39<\/text>\n   <text x='18.41' y='234.64' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>40-44<\/text>\n   <text x='18.41' y='214.99' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>45-49<\/text>\n   <text x='18.41' y='195.34' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>50-54<\/text>\n   <text x='18.41' y='175.69' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>55-59<\/text>\n   <text x='18.41' y='156.03' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>60-64<\/text>\n   <text x='18.41' y='136.38' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>65-69<\/text>\n   <text x='18.41' y='116.73' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>70-74<\/text>\n   <text x='18.41' y='97.08' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>75-79<\/text>\n   <text x='18.41' y='77.42' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>80-84<\/text>\n   <text x='18.41' y='57.77' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>85-89<\/text>\n   <text x='18.41' y='38.12' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>90-94<\/text>\n   <text x='38.69' y='411.74' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>200k<\/text>\n   <text x='149.07' y='411.74' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>100k<\/text>\n   <text x='264.33' y='411.74' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>0k<\/text>\n   <text x='369.81' y='411.74' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>100k<\/text>\n   <text x='480.18' y='411.74' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>200k<\/text>\n   <text x='242.98' y='424.2' font-size='8.25pt' font-family='Arial'>Population<\/text>\n   <text transform='translate(13.36,238.45) rotate(-90.00)' font-size='8.25pt' font-family='Arial'>Age Group<\/text>\n   <text x='508.54' y='195.76' font-size='8.25pt' font-family='Arial'>Sex<\/text>\n   <rect x='509.25' y='203.11' width='15.86' height='15.86' fill='#FF7F0E' fill-opacity='1' stroke='none'/>\n   <rect x='509.25' y='220.39' width='15.86' height='15.86' fill='#1F77B4' fill-opacity='1' stroke='none'/>\n   <text x='531.3' y='214.19' font-size='6.6pt' font-family='Arial'>Females<\/text>\n   <text x='531.3' y='231.47' font-size='6.6pt' font-family='Arial'>Males<\/text>\n   <text x='45.86' y='14.93' font-size='9.9pt' font-family='Arial'>Interactive Population Pyramid of Singapore (2024)<\/text>\n  <\/g>\n <\/g>\n<\/svg>","js":null,"uid":"svg_89cdc497_9476_404a_a231_a0a037c86127","ratio":1.333333333333333,"settings":{"tooltip":{"css":".tooltip_SVGID_ { background-color:white; color:black; border:1px solid gray; padding:5px; ; position:absolute;pointer-events:none;z-index:999;}","placement":"doc","opacity":0.9,"offx":10,"offy":0,"use_cursor_pos":true,"use_fill":false,"use_stroke":false,"delay_over":200,"delay_out":500},"hover":{"css":".hover_data_SVGID_ { fill-opacity:0.8;cursor:pointer; }","reactive":false,"nearest_distance":null},"hover_inv":{"css":""},"hover_key":{"css":".hover_key_SVGID_ { fill:orange;stroke:black;cursor:pointer; }\ntext.hover_key_SVGID_ { stroke:none;fill:orange; }\ncircle.hover_key_SVGID_ { fill:orange;stroke:black; }\nline.hover_key_SVGID_, polyline.hover_key_SVGID_ { fill:none;stroke:orange; }\nrect.hover_key_SVGID_, polygon.hover_key_SVGID_, path.hover_key_SVGID_ { fill:orange;stroke:none; }\nimage.hover_key_SVGID_ { stroke:orange; }","reactive":true},"hover_theme":{"css":".hover_theme_SVGID_ { fill:orange;stroke:black;cursor:pointer; }\ntext.hover_theme_SVGID_ { stroke:none;fill:orange; }\ncircle.hover_theme_SVGID_ { fill:orange;stroke:black; }\nline.hover_theme_SVGID_, polyline.hover_theme_SVGID_ { fill:none;stroke:orange; }\nrect.hover_theme_SVGID_, polygon.hover_theme_SVGID_, path.hover_theme_SVGID_ { fill:orange;stroke:none; }\nimage.hover_theme_SVGID_ { stroke:orange; }","reactive":true},"select":{"css":".select_data_SVGID_ { fill:red;stroke:black;cursor:pointer; }\ntext.select_data_SVGID_ { stroke:none;fill:red; }\ncircle.select_data_SVGID_ { fill:red;stroke:black; }\nline.select_data_SVGID_, polyline.select_data_SVGID_ { fill:none;stroke:red; }\nrect.select_data_SVGID_, polygon.select_data_SVGID_, path.select_data_SVGID_ { fill:red;stroke:none; }\nimage.select_data_SVGID_ { stroke:red; }","type":"multiple","only_shiny":true,"selected":[]},"select_inv":{"css":""},"select_key":{"css":".select_key_SVGID_ { fill:red;stroke:black;cursor:pointer; }\ntext.select_key_SVGID_ { stroke:none;fill:red; }\ncircle.select_key_SVGID_ { fill:red;stroke:black; }\nline.select_key_SVGID_, polyline.select_key_SVGID_ { fill:none;stroke:red; }\nrect.select_key_SVGID_, polygon.select_key_SVGID_, path.select_key_SVGID_ { fill:red;stroke:none; }\nimage.select_key_SVGID_ { stroke:red; }","type":"single","only_shiny":true,"selected":[]},"select_theme":{"css":".select_theme_SVGID_ { fill:red;stroke:black;cursor:pointer; }\ntext.select_theme_SVGID_ { stroke:none;fill:red; }\ncircle.select_theme_SVGID_ { fill:red;stroke:black; }\nline.select_theme_SVGID_, polyline.select_theme_SVGID_ { fill:none;stroke:red; }\nrect.select_theme_SVGID_, polygon.select_theme_SVGID_, path.select_theme_SVGID_ { fill:red;stroke:none; }\nimage.select_theme_SVGID_ { stroke:red; }","type":"single","only_shiny":true,"selected":[]},"zoom":{"min":1,"max":1,"duration":300},"toolbar":{"position":"topright","pngname":"diagram","tooltips":null,"fixed":false,"hidden":[],"delay_over":200,"delay_out":500},"sizing":{"rescale":true,"width":1}}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Interpretation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The population pyramid clearly visualizes demographic trends such as a strong middle-aged working population and a gradually tapering older population, indicative of an aging society with slowing birth rates.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="gender-ratio-by-planning-area" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="gender-ratio-by-planning-area"><span class="header-section-number">4.2</span> Gender Ratio by Planning Area</h2>
+<p>This section displays the <strong>male-to-female population ratio</strong> for each Singapore planning area. It uses color to indicate whether an area has more males, more females, or is balanced, and includes interactive tooltips for details.</p>
+<section id="step-1-load-required-libraries" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="step-1-load-required-libraries"><span class="header-section-number">4.2.1</span> Step 1: Load Required Libraries</h3>
+<p>We use <code>tidyverse</code> for data wrangling and <code>ggiraph</code> for creating interactive graphics.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggiraph)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-2-calculate-gender-ratio-and-prepare-tooltip" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="step-2-calculate-gender-ratio-and-prepare-tooltip"><span class="header-section-number">4.2.2</span> Step 2: Calculate Gender Ratio and Prepare Tooltip</h3>
+<ul>
+<li>Group data by <code>PA</code> and <code>Sex</code>;</li>
+<li>Summarize total male and female population;</li>
+<li>Calculate the gender ratio (<code>Males / Females</code>);</li>
+<li>Classify each area into <code>"More Males"</code>, <code>"More Females"</code>, or <code>"Balanced"</code>;</li>
+<li>Filter out areas with very small populations (<code>Total_Pop &lt;= 100</code>);</li>
+<li>Add a <code>Tooltip</code> column to be displayed when hovering.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>gender_ratio <span class="ot">&lt;-</span> respop <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PA, Sex) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Total =</span> <span class="fu">sum</span>(Pop), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Sex, <span class="at">values_from =</span> Total) <span class="sc">%&gt;%</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Total_Pop =</span> Males <span class="sc">+</span> Females) <span class="sc">%&gt;%</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Total_Pop <span class="sc">&gt;</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Ratio =</span> <span class="fu">round</span>(Males <span class="sc">/</span> Females, <span class="dv">2</span>),</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Status =</span> <span class="fu">case_when</span>(</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>      Ratio <span class="sc">&gt;</span> <span class="fl">1.05</span> <span class="sc">~</span> <span class="st">"More Males"</span>,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>      Ratio <span class="sc">&lt;</span> <span class="fl">0.95</span> <span class="sc">~</span> <span class="st">"More Females"</span>,</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Balanced"</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">Tooltip =</span> <span class="fu">paste0</span>(<span class="st">"Planning Area: "</span>, PA,</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"</span><span class="sc">\n</span><span class="st">Males: "</span>, <span class="fu">format</span>(Males, <span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"</span><span class="sc">\n</span><span class="st">Females: "</span>, <span class="fu">format</span>(Females, <span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"</span><span class="sc">\n</span><span class="st">Ratio (M/F): "</span>, Ratio),</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">Label =</span> <span class="fu">as.character</span>(Ratio)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-3-create-the-ggplot-object-with-interactive-bars" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="step-3-create-the-ggplot-object-with-interactive-bars"><span class="header-section-number">4.2.3</span> Step 3: Create the ggplot Object with Interactive Bars</h3>
+<p>We create a horizontal bar chart with:</p>
+<ul>
+<li><p>Color-coded bars based on <code>Status</code>;</p></li>
+<li><p>Tooltip on hover (using <code>geom_col_interactive</code>);</p></li>
+<li><p>Labels showing exact ratio values;</p></li>
+<li><p>Smaller y-axis text for better readability.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>gg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(gender_ratio,</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(PA, Ratio), <span class="at">y =</span> Ratio,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> Status,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">tooltip =</span> Tooltip, <span class="at">data_id =</span> PA)) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col_interactive</span>(<span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Label),</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"More Males"</span> <span class="ot">=</span> <span class="st">"#1f77b4"</span>,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"More Females"</span> <span class="ot">=</span> <span class="st">"#ff7f0e"</span>,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Balanced"</span> <span class="ot">=</span> <span class="st">"#66c2a5"</span>)) <span class="sc">+</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">7</span>),</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">r =</span> <span class="dv">20</span>) </span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Interactive Gender Ratio by Planning Area (M/F)"</span>,</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Planning Area"</span>, <span class="at">y =</span> <span class="st">"Male-to-Female Ratio"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-4-render-interactive-widget" class="level3" data-number="4.2.4">
+<h3 data-number="4.2.4" class="anchored" data-anchor-id="step-4-render-interactive-widget"><span class="header-section-number">4.2.4</span> Step 4: Render Interactive Widget</h3>
+<p>We use <code>girafe()</code> to display the chart with hover tooltips and styling.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">girafe</span>(<span class="at">ggobj =</span> gg,</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">width_svg =</span> <span class="dv">8</span>, <span class="at">height_svg =</span> <span class="dv">6</span>,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>         <span class="fu">opts_tooltip</span>(<span class="at">css =</span> <span class="st">"background-color:white;color:black;border:1px solid gray;padding:5px;"</span>),</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>         <span class="fu">opts_hover</span>(<span class="at">css =</span> <span class="st">"fill-opacity:0.8;cursor:pointer;"</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>       ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="girafe html-widget html-fill-item" id="htmlwidget-57990884d80272541600" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-57990884d80272541600">{"x":{"html":"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='ggiraph-svg' role='graphics-document' id='svg_a07be002_7f9b_4014_ba44_f281668b8145' viewBox='0 0 576 432'>\n <defs id='svg_a07be002_7f9b_4014_ba44_f281668b8145_defs'>\n  <clipPath id='svg_a07be002_7f9b_4014_ba44_f281668b8145_c1'>\n   <rect x='0' y='0' width='576' height='432'/>\n  <\/clipPath>\n  <clipPath id='svg_a07be002_7f9b_4014_ba44_f281668b8145_c2'>\n   <rect x='99.95' y='17.7' width='355.2' height='388.29'/>\n  <\/clipPath>\n <\/defs>\n <g id='svg_a07be002_7f9b_4014_ba44_f281668b8145_rootg' class='ggiraph-svg-rootg'>\n  <g clip-path='url(#svg_a07be002_7f9b_4014_ba44_f281668b8145_c1)'>\n   <rect x='0' y='0' width='576' height='432' fill='#FFFFFF' fill-opacity='1' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.75' stroke-linejoin='round' stroke-linecap='round' class='ggiraph-svg-bg'/>\n  <\/g>\n  <g clip-path='url(#svg_a07be002_7f9b_4014_ba44_f281668b8145_c2)'>\n   <polyline points='158.59,405.98 158.59,17.70' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='243.57,405.98 243.57,17.70' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='328.54,405.98 328.54,17.70' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='413.52,405.98 413.52,17.70' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,400.46 455.16,400.46' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,391.26 455.16,391.26' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,382.06 455.16,382.06' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,372.86 455.16,372.86' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,363.66 455.16,363.66' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,354.46 455.16,354.46' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,345.26 455.16,345.26' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,336.06 455.16,336.06' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,326.85 455.16,326.85' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,317.65 455.16,317.65' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,308.45 455.16,308.45' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,299.25 455.16,299.25' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,290.05 455.16,290.05' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,280.85 455.16,280.85' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,271.65 455.16,271.65' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,262.45 455.16,262.45' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,253.25 455.16,253.25' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,244.04 455.16,244.04' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,234.84 455.16,234.84' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,225.64 455.16,225.64' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,216.44 455.16,216.44' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,207.24 455.16,207.24' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,198.04 455.16,198.04' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,188.84 455.16,188.84' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,179.64 455.16,179.64' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,170.44 455.16,170.44' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,161.23 455.16,161.23' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,152.03 455.16,152.03' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,142.83 455.16,142.83' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,133.63 455.16,133.63' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,124.43 455.16,124.43' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,115.23 455.16,115.23' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,106.03 455.16,106.03' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,96.83 455.16,96.83' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,87.63 455.16,87.63' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,78.42 455.16,78.42' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,69.22 455.16,69.22' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,60.02 455.16,60.02' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,50.82 455.16,50.82' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,41.62 455.16,41.62' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,32.42 455.16,32.42' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,23.22 455.16,23.22' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='116.10,405.98 116.10,17.70' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='201.08,405.98 201.08,17.70' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='286.05,405.98 286.05,17.70' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='371.03,405.98 371.03,17.70' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e1' x='116.1' y='277.63' width='257.76' height='6.44' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Planning Area: Ang Mo Kio&amp;lt;br/&amp;gt;Males:  76,240&amp;lt;br/&amp;gt;Females:  84,210&amp;lt;br/&amp;gt;Ratio (M/F): 0.91' data-id='Ang Mo Kio'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e2' x='116.1' y='222.42' width='263.43' height='6.44' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Planning Area: Bedok&amp;lt;br/&amp;gt;Males: 133,890&amp;lt;br/&amp;gt;Females: 143,770&amp;lt;br/&amp;gt;Ratio (M/F): 0.93' data-id='Bedok'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e3' x='116.1' y='213.22' width='263.43' height='6.44' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Planning Area: Bishan&amp;lt;br/&amp;gt;Males:  42,570&amp;lt;br/&amp;gt;Females:  45,640&amp;lt;br/&amp;gt;Ratio (M/F): 0.93' data-id='Bishan'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e4' x='116.1' y='167.22' width='271.93' height='6.44' fill='#66C2A5' fill-opacity='1' stroke='none' title='Planning Area: Bukit Batok&amp;lt;br/&amp;gt;Males:  82,320&amp;lt;br/&amp;gt;Females:  86,070&amp;lt;br/&amp;gt;Ratio (M/F): 0.96' data-id='Bukit Batok'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e5' x='116.1' y='268.43' width='257.76' height='6.44' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Planning Area: Bukit Merah&amp;lt;br/&amp;gt;Males:  71,230&amp;lt;br/&amp;gt;Females:  78,160&amp;lt;br/&amp;gt;Ratio (M/F): 0.91' data-id='Bukit Merah'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e6' x='116.1' y='158.01' width='271.93' height='6.44' fill='#66C2A5' fill-opacity='1' stroke='none' title='Planning Area: Bukit Panjang&amp;lt;br/&amp;gt;Males:  67,990&amp;lt;br/&amp;gt;Females:  70,740&amp;lt;br/&amp;gt;Ratio (M/F): 0.96' data-id='Bukit Panjang'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e7' x='116.1' y='360.44' width='243.6' height='6.44' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Planning Area: Bukit Timah&amp;lt;br/&amp;gt;Males:  39,010&amp;lt;br/&amp;gt;Females:  45,240&amp;lt;br/&amp;gt;Ratio (M/F): 0.86' data-id='Bukit Timah'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e8' x='116.1' y='29.2' width='305.92' height='6.44' fill='#1F77B4' fill-opacity='1' stroke='none' title='Planning Area: Changi&amp;lt;br/&amp;gt;Males:     950&amp;lt;br/&amp;gt;Females:     880&amp;lt;br/&amp;gt;Ratio (M/F): 1.08' data-id='Changi'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e9' x='116.1' y='75.2' width='277.59' height='6.44' fill='#66C2A5' fill-opacity='1' stroke='none' title='Planning Area: Choa Chu Kang&amp;lt;br/&amp;gt;Males:  94,540&amp;lt;br/&amp;gt;Females:  96,100&amp;lt;br/&amp;gt;Ratio (M/F): 0.98' data-id='Choa Chu Kang'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e10' x='116.1' y='286.83' width='254.93' height='6.44' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Planning Area: Clementi&amp;lt;br/&amp;gt;Males:  48,830&amp;lt;br/&amp;gt;Females:  54,130&amp;lt;br/&amp;gt;Ratio (M/F): 0.9' data-id='Clementi'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e11' x='116.1' y='250.02' width='260.6' height='6.44' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Planning Area: Downtown Core&amp;lt;br/&amp;gt;Males:   2,000&amp;lt;br/&amp;gt;Females:   2,170&amp;lt;br/&amp;gt;Ratio (M/F): 0.92' data-id='Downtown Core'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e12' x='116.1' y='194.82' width='269.09' height='6.44' fill='#66C2A5' fill-opacity='1' stroke='none' title='Planning Area: Geylang&amp;lt;br/&amp;gt;Males:  57,060&amp;lt;br/&amp;gt;Females:  59,760&amp;lt;br/&amp;gt;Ratio (M/F): 0.95' data-id='Geylang'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e13' x='116.1' y='185.62' width='269.09' height='6.44' fill='#66C2A5' fill-opacity='1' stroke='none' title='Planning Area: Hougang&amp;lt;br/&amp;gt;Males: 111,290&amp;lt;br/&amp;gt;Females: 117,490&amp;lt;br/&amp;gt;Ratio (M/F): 0.95' data-id='Hougang'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e14' x='116.1' y='112.01' width='274.76' height='6.44' fill='#66C2A5' fill-opacity='1' stroke='none' title='Planning Area: Jurong East&amp;lt;br/&amp;gt;Males:  36,710&amp;lt;br/&amp;gt;Females:  37,880&amp;lt;br/&amp;gt;Ratio (M/F): 0.97' data-id='Jurong East'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e15' x='116.1' y='56.8' width='283.26' height='6.44' fill='#66C2A5' fill-opacity='1' stroke='none' title='Planning Area: Jurong West&amp;lt;br/&amp;gt;Males: 128,780&amp;lt;br/&amp;gt;Females: 129,130&amp;lt;br/&amp;gt;Ratio (M/F): 1' data-id='Jurong West'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e16' x='116.1' y='148.81' width='271.93' height='6.44' fill='#66C2A5' fill-opacity='1' stroke='none' title='Planning Area: Kallang&amp;lt;br/&amp;gt;Males:  49,560&amp;lt;br/&amp;gt;Females:  51,630&amp;lt;br/&amp;gt;Ratio (M/F): 0.96' data-id='Kallang'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e17' x='116.1' y='332.83' width='249.27' height='6.44' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Planning Area: Mandai&amp;lt;br/&amp;gt;Males:   1,000&amp;lt;br/&amp;gt;Females:   1,130&amp;lt;br/&amp;gt;Ratio (M/F): 0.88' data-id='Mandai'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e18' x='116.1' y='323.63' width='249.27' height='6.44' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Planning Area: Marine Parade&amp;lt;br/&amp;gt;Males:  22,020&amp;lt;br/&amp;gt;Females:  24,930&amp;lt;br/&amp;gt;Ratio (M/F): 0.88' data-id='Marine Parade'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e19' x='116.1' y='369.64' width='235.1' height='6.44' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Planning Area: Museum&amp;lt;br/&amp;gt;Males:     240&amp;lt;br/&amp;gt;Females:     290&amp;lt;br/&amp;gt;Ratio (M/F): 0.83' data-id='Museum'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e20' x='116.1' y='240.82' width='260.6' height='6.44' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Planning Area: Newton&amp;lt;br/&amp;gt;Males:   4,740&amp;lt;br/&amp;gt;Females:   5,170&amp;lt;br/&amp;gt;Ratio (M/F): 0.92' data-id='Newton'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e21' x='116.1' y='204.02' width='266.26' height='6.44' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Planning Area: Novena&amp;lt;br/&amp;gt;Males:  25,290&amp;lt;br/&amp;gt;Females:  26,860&amp;lt;br/&amp;gt;Ratio (M/F): 0.94' data-id='Novena'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e22' x='116.1' y='388.04' width='220.94' height='6.44' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Planning Area: Orchard&amp;lt;br/&amp;gt;Males:     380&amp;lt;br/&amp;gt;Females:     490&amp;lt;br/&amp;gt;Ratio (M/F): 0.78' data-id='Orchard'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e23' x='116.1' y='102.81' width='274.76' height='6.44' fill='#66C2A5' fill-opacity='1' stroke='none' title='Planning Area: Outram&amp;lt;br/&amp;gt;Males:   8,260&amp;lt;br/&amp;gt;Females:   8,480&amp;lt;br/&amp;gt;Ratio (M/F): 0.97' data-id='Outram'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e24' x='116.1' y='93.61' width='274.76' height='6.44' fill='#66C2A5' fill-opacity='1' stroke='none' title='Planning Area: Pasir Ris&amp;lt;br/&amp;gt;Males:  71,700&amp;lt;br/&amp;gt;Females:  73,780&amp;lt;br/&amp;gt;Ratio (M/F): 0.97' data-id='Pasir Ris'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e25' x='116.1' y='139.61' width='271.93' height='6.44' fill='#66C2A5' fill-opacity='1' stroke='none' title='Planning Area: Punggol&amp;lt;br/&amp;gt;Males:  98,150&amp;lt;br/&amp;gt;Females: 101,730&amp;lt;br/&amp;gt;Ratio (M/F): 0.96' data-id='Punggol'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e26' x='116.1' y='314.43' width='249.27' height='6.44' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Planning Area: Queenstown&amp;lt;br/&amp;gt;Males:  47,860&amp;lt;br/&amp;gt;Females:  54,180&amp;lt;br/&amp;gt;Ratio (M/F): 0.88' data-id='Queenstown'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e27' x='116.1' y='342.04' width='246.43' height='6.44' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Planning Area: River Valley&amp;lt;br/&amp;gt;Males:   5,560&amp;lt;br/&amp;gt;Females:   6,410&amp;lt;br/&amp;gt;Ratio (M/F): 0.87' data-id='River Valley'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e28' x='116.1' y='47.6' width='283.26' height='6.44' fill='#66C2A5' fill-opacity='1' stroke='none' title='Planning Area: Rochor&amp;lt;br/&amp;gt;Males:   6,510&amp;lt;br/&amp;gt;Females:   6,530&amp;lt;br/&amp;gt;Ratio (M/F): 1' data-id='Rochor'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e29' x='116.1' y='397.24' width='212.44' height='6.44' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Planning Area: Seletar&amp;lt;br/&amp;gt;Males:      60&amp;lt;br/&amp;gt;Females:      80&amp;lt;br/&amp;gt;Ratio (M/F): 0.75' data-id='Seletar'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e30' x='116.1' y='84.41' width='274.76' height='6.44' fill='#66C2A5' fill-opacity='1' stroke='none' title='Planning Area: Sembawang&amp;lt;br/&amp;gt;Males:  54,520&amp;lt;br/&amp;gt;Females:  56,150&amp;lt;br/&amp;gt;Ratio (M/F): 0.97' data-id='Sembawang'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e31' x='116.1' y='130.41' width='271.93' height='6.44' fill='#66C2A5' fill-opacity='1' stroke='none' title='Planning Area: Sengkang&amp;lt;br/&amp;gt;Males: 130,150&amp;lt;br/&amp;gt;Females: 135,400&amp;lt;br/&amp;gt;Ratio (M/F): 0.96' data-id='Sengkang'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e32' x='116.1' y='231.62' width='260.6' height='6.44' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Planning Area: Serangoon&amp;lt;br/&amp;gt;Males:  56,680&amp;lt;br/&amp;gt;Females:  61,570&amp;lt;br/&amp;gt;Ratio (M/F): 0.92' data-id='Serangoon'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e33' x='116.1' y='305.23' width='249.27' height='6.44' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Planning Area: Singapore River&amp;lt;br/&amp;gt;Males:   1,960&amp;lt;br/&amp;gt;Females:   2,240&amp;lt;br/&amp;gt;Ratio (M/F): 0.88' data-id='Singapore River'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e34' x='116.1' y='296.03' width='249.27' height='6.44' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Planning Area: Southern Islands&amp;lt;br/&amp;gt;Males:   1,210&amp;lt;br/&amp;gt;Females:   1,370&amp;lt;br/&amp;gt;Ratio (M/F): 0.88' data-id='Southern Islands'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e35' x='116.1' y='20' width='322.91' height='6.44' fill='#1F77B4' fill-opacity='1' stroke='none' title='Planning Area: Sungei Kadut&amp;lt;br/&amp;gt;Males:     320&amp;lt;br/&amp;gt;Females:     280&amp;lt;br/&amp;gt;Ratio (M/F): 1.14' data-id='Sungei Kadut'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e36' x='116.1' y='176.42' width='269.09' height='6.44' fill='#66C2A5' fill-opacity='1' stroke='none' title='Planning Area: Tampines&amp;lt;br/&amp;gt;Males: 138,900&amp;lt;br/&amp;gt;Females: 146,050&amp;lt;br/&amp;gt;Ratio (M/F): 0.95' data-id='Tampines'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e37' x='116.1' y='351.24' width='243.6' height='6.44' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Planning Area: Tanglin&amp;lt;br/&amp;gt;Males:  11,340&amp;lt;br/&amp;gt;Females:  13,200&amp;lt;br/&amp;gt;Ratio (M/F): 0.86' data-id='Tanglin'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e38' x='116.1' y='66' width='277.59' height='6.44' fill='#66C2A5' fill-opacity='1' stroke='none' title='Planning Area: Tengah&amp;lt;br/&amp;gt;Males:   3,930&amp;lt;br/&amp;gt;Females:   4,010&amp;lt;br/&amp;gt;Ratio (M/F): 0.98' data-id='Tengah'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e39' x='116.1' y='259.23' width='257.76' height='6.44' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Planning Area: Toa Payoh&amp;lt;br/&amp;gt;Males:  66,790&amp;lt;br/&amp;gt;Females:  73,240&amp;lt;br/&amp;gt;Ratio (M/F): 0.91' data-id='Toa Payoh'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e40' x='116.1' y='378.84' width='223.77' height='6.44' fill='#FF7F0E' fill-opacity='1' stroke='none' title='Planning Area: Western Water Catchment&amp;lt;br/&amp;gt;Males:     260&amp;lt;br/&amp;gt;Females:     330&amp;lt;br/&amp;gt;Ratio (M/F): 0.79' data-id='Western Water Catchment'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e41' x='116.1' y='38.4' width='283.26' height='6.44' fill='#66C2A5' fill-opacity='1' stroke='none' title='Planning Area: Woodlands&amp;lt;br/&amp;gt;Males: 127,760&amp;lt;br/&amp;gt;Females: 127,750&amp;lt;br/&amp;gt;Ratio (M/F): 1' data-id='Woodlands'/>\n   <rect id='svg_a07be002_7f9b_4014_ba44_f281668b8145_e42' x='116.1' y='121.21' width='271.93' height='6.44' fill='#66C2A5' fill-opacity='1' stroke='none' title='Planning Area: Yishun&amp;lt;br/&amp;gt;Males: 112,920&amp;lt;br/&amp;gt;Females: 117,400&amp;lt;br/&amp;gt;Ratio (M/F): 0.96' data-id='Yishun'/>\n   <text x='375.52' y='283.9' font-size='6.4pt' font-family='Arial'>0.91<\/text>\n   <text x='381.19' y='228.7' font-size='6.4pt' font-family='Arial'>0.93<\/text>\n   <text x='381.19' y='219.5' font-size='6.4pt' font-family='Arial'>0.93<\/text>\n   <text x='389.69' y='173.49' font-size='6.4pt' font-family='Arial'>0.96<\/text>\n   <text x='375.52' y='274.7' font-size='6.4pt' font-family='Arial'>0.91<\/text>\n   <text x='389.69' y='164.29' font-size='6.4pt' font-family='Arial'>0.96<\/text>\n   <text x='361.36' y='366.71' font-size='6.4pt' font-family='Arial'>0.86<\/text>\n   <text x='423.68' y='35.48' font-size='6.4pt' font-family='Arial'>1.08<\/text>\n   <text x='395.35' y='81.48' font-size='6.4pt' font-family='Arial'>0.98<\/text>\n   <text x='372.22' y='293.11' font-size='6.4pt' font-family='Arial'>0.9<\/text>\n   <text x='378.36' y='256.3' font-size='6.4pt' font-family='Arial'>0.92<\/text>\n   <text x='386.85' y='201.1' font-size='6.4pt' font-family='Arial'>0.95<\/text>\n   <text x='386.85' y='191.89' font-size='6.4pt' font-family='Arial'>0.95<\/text>\n   <text x='392.52' y='118.29' font-size='6.4pt' font-family='Arial'>0.97<\/text>\n   <text x='399.83' y='63.08' font-size='6.4pt' font-family='Arial'>1<\/text>\n   <text x='389.69' y='155.09' font-size='6.4pt' font-family='Arial'>0.96<\/text>\n   <text x='367.03' y='339.11' font-size='6.4pt' font-family='Arial'>0.88<\/text>\n   <text x='367.03' y='329.91' font-size='6.4pt' font-family='Arial'>0.88<\/text>\n   <text x='352.86' y='375.92' font-size='6.4pt' font-family='Arial'>0.83<\/text>\n   <text x='378.36' y='247.1' font-size='6.4pt' font-family='Arial'>0.92<\/text>\n   <text x='384.02' y='210.3' font-size='6.4pt' font-family='Arial'>0.94<\/text>\n   <text x='338.7' y='394.32' font-size='6.4pt' font-family='Arial'>0.78<\/text>\n   <text x='392.52' y='109.08' font-size='6.4pt' font-family='Arial'>0.97<\/text>\n   <text x='392.52' y='99.88' font-size='6.4pt' font-family='Arial'>0.97<\/text>\n   <text x='389.69' y='145.89' font-size='6.4pt' font-family='Arial'>0.96<\/text>\n   <text x='367.03' y='320.71' font-size='6.4pt' font-family='Arial'>0.88<\/text>\n   <text x='364.19' y='348.31' font-size='6.4pt' font-family='Arial'>0.87<\/text>\n   <text x='399.83' y='53.88' font-size='6.4pt' font-family='Arial'>1<\/text>\n   <text x='330.2' y='403.52' font-size='6.4pt' font-family='Arial'>0.75<\/text>\n   <text x='392.52' y='90.68' font-size='6.4pt' font-family='Arial'>0.97<\/text>\n   <text x='389.69' y='136.69' font-size='6.4pt' font-family='Arial'>0.96<\/text>\n   <text x='378.36' y='237.9' font-size='6.4pt' font-family='Arial'>0.92<\/text>\n   <text x='367.03' y='311.51' font-size='6.4pt' font-family='Arial'>0.88<\/text>\n   <text x='367.03' y='302.31' font-size='6.4pt' font-family='Arial'>0.88<\/text>\n   <text x='440.67' y='26.27' font-size='6.4pt' font-family='Arial'>1.14<\/text>\n   <text x='386.85' y='182.69' font-size='6.4pt' font-family='Arial'>0.95<\/text>\n   <text x='361.36' y='357.51' font-size='6.4pt' font-family='Arial'>0.86<\/text>\n   <text x='395.35' y='72.28' font-size='6.4pt' font-family='Arial'>0.98<\/text>\n   <text x='375.52' y='265.5' font-size='6.4pt' font-family='Arial'>0.91<\/text>\n   <text x='341.53' y='385.12' font-size='6.4pt' font-family='Arial'>0.79<\/text>\n   <text x='399.83' y='44.68' font-size='6.4pt' font-family='Arial'>1<\/text>\n   <text x='389.69' y='127.49' font-size='6.4pt' font-family='Arial'>0.96<\/text>\n  <\/g>\n  <g clip-path='url(#svg_a07be002_7f9b_4014_ba44_f281668b8145_c1)'>\n   <text x='72.84' y='402.97' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Seletar<\/text>\n   <text x='69.73' y='393.77' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Orchard<\/text>\n   <text x='12.93' y='384.57' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Western Water Catchment<\/text>\n   <text x='68.17' y='375.36' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Museum<\/text>\n   <text x='58.45' y='366.16' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Bukit Timah<\/text>\n   <text x='72.83' y='356.96' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Tanglin<\/text>\n   <text x='58.19' y='347.76' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>River Valley<\/text>\n   <text x='72.05' y='338.56' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Mandai<\/text>\n   <text x='49.09' y='329.36' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Marine Parade<\/text>\n   <text x='55.71' y='320.16' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Queenstown<\/text>\n   <text x='44.82' y='310.96' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Singapore River<\/text>\n   <text x='42.48' y='301.76' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Southern Islands<\/text>\n   <text x='67.4' y='292.56' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Clementi<\/text>\n   <text x='58.83' y='283.35' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Ang Mo Kio<\/text>\n   <text x='57.67' y='274.15' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Bukit Merah<\/text>\n   <text x='61.94' y='264.95' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Toa Payoh<\/text>\n   <text x='45.21' y='255.75' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Downtown Core<\/text>\n   <text x='71.28' y='246.55' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Newton<\/text>\n   <text x='60.76' y='237.35' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Serangoon<\/text>\n   <text x='75.17' y='228.15' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Bedok<\/text>\n   <text x='73.62' y='218.95' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Bishan<\/text>\n   <text x='70.89' y='209.75' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Novena<\/text>\n   <text x='68.94' y='200.54' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Geylang<\/text>\n   <text x='66.6' y='191.34' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Hougang<\/text>\n   <text x='65.06' y='182.14' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Tampines<\/text>\n   <text x='59.62' y='172.94' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Bukit Batok<\/text>\n   <text x='51.82' y='163.74' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Bukit Panjang<\/text>\n   <text x='71.67' y='154.54' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Kallang<\/text>\n   <text x='69.33' y='145.34' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Punggol<\/text>\n   <text x='63.49' y='136.14' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Sengkang<\/text>\n   <text x='73.88' y='126.94' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Yishun<\/text>\n   <text x='57.66' y='117.73' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Jurong East<\/text>\n   <text x='71.68' y='108.53' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Outram<\/text>\n   <text x='67.02' y='99.33' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Pasir Ris<\/text>\n   <text x='56.1' y='90.13' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Sembawang<\/text>\n   <text x='45.2' y='80.93' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Choa Chu Kang<\/text>\n   <text x='72.05' y='71.73' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Tengah<\/text>\n   <text x='55.85' y='62.53' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Jurong West<\/text>\n   <text x='72.45' y='53.33' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Rochor<\/text>\n   <text x='60.12' y='44.13' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Woodlands<\/text>\n   <text x='72.83' y='34.93' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Changi<\/text>\n   <text x='52.98' y='25.72' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Sungei Kadut<\/text>\n   <text x='109.98' y='417.21' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>0.0<\/text>\n   <text x='194.96' y='417.21' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>0.3<\/text>\n   <text x='279.93' y='417.21' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>0.6<\/text>\n   <text x='364.91' y='417.21' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>0.9<\/text>\n   <text x='224.66' y='429.68' font-size='8.25pt' font-family='Arial'>Male-to-Female Ratio<\/text>\n   <text transform='translate(7.88,246.10) rotate(-90.00)' font-size='8.25pt' font-family='Arial'>Planning Area<\/text>\n   <text x='471.6' y='187.12' font-size='8.25pt' font-family='Arial'>Status<\/text>\n   <rect x='472.31' y='194.47' width='15.86' height='15.86' fill='#66C2A5' fill-opacity='1' stroke='none'/>\n   <rect x='472.31' y='211.75' width='15.86' height='15.86' fill='#FF7F0E' fill-opacity='1' stroke='none'/>\n   <rect x='472.31' y='229.03' width='15.86' height='15.86' fill='#1F77B4' fill-opacity='1' stroke='none'/>\n   <text x='494.36' y='205.55' font-size='6.6pt' font-family='Arial'>Balanced<\/text>\n   <text x='494.36' y='222.83' font-size='6.6pt' font-family='Arial'>More Females<\/text>\n   <text x='494.36' y='240.11' font-size='6.6pt' font-family='Arial'>More Males<\/text>\n   <text x='99.95' y='9.45' font-size='9.9pt' font-family='Arial'>Interactive Gender Ratio by Planning Area (M/F)<\/text>\n  <\/g>\n <\/g>\n<\/svg>","js":null,"uid":"svg_a07be002_7f9b_4014_ba44_f281668b8145","ratio":1.333333333333333,"settings":{"tooltip":{"css":".tooltip_SVGID_ { background-color:white;color:black;border:1px solid gray;padding:5px; ; position:absolute;pointer-events:none;z-index:999;}","placement":"doc","opacity":0.9,"offx":10,"offy":0,"use_cursor_pos":true,"use_fill":false,"use_stroke":false,"delay_over":200,"delay_out":500},"hover":{"css":".hover_data_SVGID_ { fill-opacity:0.8;cursor:pointer; }","reactive":false,"nearest_distance":null},"hover_inv":{"css":""},"hover_key":{"css":".hover_key_SVGID_ { fill:orange;stroke:black;cursor:pointer; }\ntext.hover_key_SVGID_ { stroke:none;fill:orange; }\ncircle.hover_key_SVGID_ { fill:orange;stroke:black; }\nline.hover_key_SVGID_, polyline.hover_key_SVGID_ { fill:none;stroke:orange; }\nrect.hover_key_SVGID_, polygon.hover_key_SVGID_, path.hover_key_SVGID_ { fill:orange;stroke:none; }\nimage.hover_key_SVGID_ { stroke:orange; }","reactive":true},"hover_theme":{"css":".hover_theme_SVGID_ { fill:orange;stroke:black;cursor:pointer; }\ntext.hover_theme_SVGID_ { stroke:none;fill:orange; }\ncircle.hover_theme_SVGID_ { fill:orange;stroke:black; }\nline.hover_theme_SVGID_, polyline.hover_theme_SVGID_ { fill:none;stroke:orange; }\nrect.hover_theme_SVGID_, polygon.hover_theme_SVGID_, path.hover_theme_SVGID_ { fill:orange;stroke:none; }\nimage.hover_theme_SVGID_ { stroke:orange; }","reactive":true},"select":{"css":".select_data_SVGID_ { fill:red;stroke:black;cursor:pointer; }\ntext.select_data_SVGID_ { stroke:none;fill:red; }\ncircle.select_data_SVGID_ { fill:red;stroke:black; }\nline.select_data_SVGID_, polyline.select_data_SVGID_ { fill:none;stroke:red; }\nrect.select_data_SVGID_, polygon.select_data_SVGID_, path.select_data_SVGID_ { fill:red;stroke:none; }\nimage.select_data_SVGID_ { stroke:red; }","type":"multiple","only_shiny":true,"selected":[]},"select_inv":{"css":""},"select_key":{"css":".select_key_SVGID_ { fill:red;stroke:black;cursor:pointer; }\ntext.select_key_SVGID_ { stroke:none;fill:red; }\ncircle.select_key_SVGID_ { fill:red;stroke:black; }\nline.select_key_SVGID_, polyline.select_key_SVGID_ { fill:none;stroke:red; }\nrect.select_key_SVGID_, polygon.select_key_SVGID_, path.select_key_SVGID_ { fill:red;stroke:none; }\nimage.select_key_SVGID_ { stroke:red; }","type":"single","only_shiny":true,"selected":[]},"select_theme":{"css":".select_theme_SVGID_ { fill:red;stroke:black;cursor:pointer; }\ntext.select_theme_SVGID_ { stroke:none;fill:red; }\ncircle.select_theme_SVGID_ { fill:red;stroke:black; }\nline.select_theme_SVGID_, polyline.select_theme_SVGID_ { fill:none;stroke:red; }\nrect.select_theme_SVGID_, polygon.select_theme_SVGID_, path.select_theme_SVGID_ { fill:red;stroke:none; }\nimage.select_theme_SVGID_ { stroke:red; }","type":"single","only_shiny":true,"selected":[]},"zoom":{"min":1,"max":1,"duration":300},"toolbar":{"position":"topright","pngname":"diagram","tooltips":null,"fixed":false,"hidden":[],"delay_over":200,"delay_out":500},"sizing":{"rescale":true,"width":1}}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Interpretation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Most areas show balanced gender distributions, though some regions—such as Sungei Kadut and Changi—exhibit significant gender disparities, which may be related to industrial land use or specific housing demographics.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="total-population-by-planning-area" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="total-population-by-planning-area"><span class="header-section-number">4.3</span> Total Population by Planning Area</h2>
+<p>This section presents the total 2024 population for each planning area in Singapore using an interactive bar chart. Tooltips reveal the exact population figures on hover, and low-population areas are excluded to improve readability.</p>
+<section id="step-1-load-required-libraries-1" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="step-1-load-required-libraries-1"><span class="header-section-number">4.3.1</span> Step 1: Load Required Libraries</h3>
+<p>We load <code>tidyverse</code> for data manipulation and <code>ggiraph</code> for interactive plotting.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggiraph)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-2-aggregate-and-filter-population-data" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="step-2-aggregate-and-filter-population-data"><span class="header-section-number">4.3.2</span> Step 2: Aggregate and Filter Population Data</h3>
+<ul>
+<li><p>Group the dataset by <code>PA</code> (planning area);</p></li>
+<li><p>Summarize total population (<code>Total_Pop</code>);</p></li>
+<li><p>Filter out areas with negligible population (e.g., below 100);</p></li>
+<li><p>Add a <code>Tooltip</code> column with formatted text for display.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>total_pop <span class="ot">&lt;-</span> respop <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PA) <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Total_Pop =</span> <span class="fu">sum</span>(Pop), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Total_Pop <span class="sc">&gt;</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Tooltip =</span> <span class="fu">paste0</span>(<span class="st">"Planning Area: "</span>, PA,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"</span><span class="sc">\n</span><span class="st">Population: "</span>, <span class="fu">format</span>(Total_Pop, <span class="at">big.mark =</span> <span class="st">","</span>)),</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Label =</span> <span class="fu">paste0</span>(<span class="fu">round</span>(Total_Pop <span class="sc">/</span> <span class="dv">1000</span>), <span class="st">"k"</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-3-build-interactive-ggplot-object-1" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="step-3-build-interactive-ggplot-object-1"><span class="header-section-number">4.3.3</span> Step 3: Build Interactive ggplot Object</h3>
+<ul>
+<li><p>Reorder planning areas by total population;</p></li>
+<li><p>Add tooltips via <code>geom_col_interactive()</code>;</p></li>
+<li><p>Flip coordinates for clearer labels;</p></li>
+<li><p>Set minimalist theme and small font for y-axis.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>max_val <span class="ot">&lt;-</span> <span class="fu">max</span>(total_pop<span class="sc">$</span>Total_Pop)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>gg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(total_pop, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(PA, Total_Pop), <span class="at">y =</span> Total_Pop,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">tooltip =</span> Tooltip, <span class="at">data_id =</span> PA)) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col_interactive</span>(<span class="at">fill =</span> <span class="st">"#2ca02c"</span>, <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Label),</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="sc">~</span> <span class="fu">paste0</span>(.x <span class="sc">/</span> <span class="dv">1000</span>, <span class="st">"k"</span>),</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, max_val <span class="sc">*</span> <span class="fl">1.1</span>) </span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">7</span>),</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">r =</span> <span class="dv">30</span>)) <span class="sc">+</span>  </span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Interactive Total Population by Planning Area (2024)"</span>,</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Planning Area"</span>, <span class="at">y =</span> <span class="st">"Total Population"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-4-render-interactive-widget-1" class="level3" data-number="4.3.4">
+<h3 data-number="4.3.4" class="anchored" data-anchor-id="step-4-render-interactive-widget-1"><span class="header-section-number">4.3.4</span> Step 4: Render Interactive Widget</h3>
+<p>We render the final output using <code>girafe()</code>, and customize the tooltip style with CSS.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">girafe</span>(<span class="at">ggobj =</span> gg,</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">width_svg =</span> <span class="dv">8</span>, <span class="at">height_svg =</span> <span class="dv">6</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>         <span class="fu">opts_tooltip</span>(<span class="at">css =</span> <span class="st">"background-color:white;color:black;border:1px solid gray;padding:5px;"</span>),</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>         <span class="fu">opts_hover</span>(<span class="at">css =</span> <span class="st">"fill-opacity:0.8;cursor:pointer;"</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>       ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="girafe html-widget html-fill-item" id="htmlwidget-9b9799f59856169de412" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-9b9799f59856169de412">{"x":{"html":"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='ggiraph-svg' role='graphics-document' id='svg_431e9299_dd81_414a_89b2_6070ab1e5233' viewBox='0 0 576 432'>\n <defs id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_defs'>\n  <clipPath id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_c1'>\n   <rect x='0' y='0' width='576' height='432'/>\n  <\/clipPath>\n  <clipPath id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_c2'>\n   <rect x='99.95' y='17.7' width='446.16' height='388.29'/>\n  <\/clipPath>\n <\/defs>\n <g id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_rootg' class='ggiraph-svg-rootg'>\n  <g clip-path='url(#svg_431e9299_dd81_414a_89b2_6070ab1e5233_c1)'>\n   <rect x='0' y='0' width='576' height='432' fill='#FFFFFF' fill-opacity='1' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.75' stroke-linejoin='round' stroke-linecap='round' class='ggiraph-svg-bg'/>\n  <\/g>\n  <g clip-path='url(#svg_431e9299_dd81_414a_89b2_6070ab1e5233_c2)'>\n   <polyline points='184.93,405.98 184.93,17.70' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='314.33,405.98 314.33,17.70' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='443.73,405.98 443.73,17.70' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,400.46 546.11,400.46' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,391.26 546.11,391.26' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,382.06 546.11,382.06' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,372.86 546.11,372.86' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,363.66 546.11,363.66' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,354.46 546.11,354.46' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,345.26 546.11,345.26' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,336.06 546.11,336.06' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,326.85 546.11,326.85' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,317.65 546.11,317.65' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,308.45 546.11,308.45' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,299.25 546.11,299.25' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,290.05 546.11,290.05' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,280.85 546.11,280.85' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,271.65 546.11,271.65' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,262.45 546.11,262.45' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,253.25 546.11,253.25' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,244.04 546.11,244.04' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,234.84 546.11,234.84' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,225.64 546.11,225.64' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,216.44 546.11,216.44' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,207.24 546.11,207.24' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,198.04 546.11,198.04' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,188.84 546.11,188.84' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,179.64 546.11,179.64' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,170.44 546.11,170.44' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,161.23 546.11,161.23' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,152.03 546.11,152.03' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,142.83 546.11,142.83' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,133.63 546.11,133.63' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,124.43 546.11,124.43' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,115.23 546.11,115.23' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,106.03 546.11,106.03' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,96.83 546.11,96.83' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,87.63 546.11,87.63' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,78.42 546.11,78.42' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,69.22 546.11,69.22' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,60.02 546.11,60.02' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,50.82 546.11,50.82' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,41.62 546.11,41.62' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,32.42 546.11,32.42' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='99.95,23.22 546.11,23.22' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='120.23,405.98 120.23,17.70' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='249.63,405.98 249.63,17.70' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='379.03,405.98 379.03,17.70' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='508.43,405.98 508.43,17.70' fill='none' stroke='#EBEBEB' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e1' x='120.23' y='112.01' width='207.62' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Ang Mo Kio&amp;lt;br/&amp;gt;Population: 160,450' data-id='Ang Mo Kio'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e2' x='120.23' y='29.2' width='359.29' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Bedok&amp;lt;br/&amp;gt;Population: 277,660' data-id='Bedok'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e3' x='120.23' y='213.22' width='114.14' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Bishan&amp;lt;br/&amp;gt;Population:  88,210' data-id='Bishan'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e4' x='120.23' y='102.81' width='217.9' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Bukit Batok&amp;lt;br/&amp;gt;Population: 168,390' data-id='Bukit Batok'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e5' x='120.23' y='121.21' width='193.31' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Bukit Merah&amp;lt;br/&amp;gt;Population: 149,390' data-id='Bukit Merah'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e6' x='120.23' y='148.81' width='179.52' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Bukit Panjang&amp;lt;br/&amp;gt;Population: 138,730' data-id='Bukit Panjang'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e7' x='120.23' y='222.42' width='109.02' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Bukit Timah&amp;lt;br/&amp;gt;Population:  84,250' data-id='Bukit Timah'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e8' x='120.23' y='351.24' width='2.37' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Changi&amp;lt;br/&amp;gt;Population:   1,830' data-id='Changi'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e9' x='120.23' y='93.61' width='246.69' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Choa Chu Kang&amp;lt;br/&amp;gt;Population: 190,640' data-id='Choa Chu Kang'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e10' x='120.23' y='185.62' width='133.23' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Clementi&amp;lt;br/&amp;gt;Population: 102,960' data-id='Clementi'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e11' x='120.23' y='323.63' width='5.4' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Downtown Core&amp;lt;br/&amp;gt;Population:   4,170' data-id='Downtown Core'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e12' x='120.23' y='167.22' width='151.17' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Geylang&amp;lt;br/&amp;gt;Population: 116,820' data-id='Geylang'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e13' x='120.23' y='75.2' width='296.04' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Hougang&amp;lt;br/&amp;gt;Population: 228,780' data-id='Hougang'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e14' x='120.23' y='231.62' width='96.52' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Jurong East&amp;lt;br/&amp;gt;Population:  74,590' data-id='Jurong East'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e15' x='120.23' y='47.6' width='333.74' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Jurong West&amp;lt;br/&amp;gt;Population: 257,910' data-id='Jurong West'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e16' x='120.23' y='204.02' width='130.94' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Kallang&amp;lt;br/&amp;gt;Population: 101,190' data-id='Kallang'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e17' x='120.23' y='342.04' width='2.76' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Mandai&amp;lt;br/&amp;gt;Population:   2,130' data-id='Mandai'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e18' x='120.23' y='250.02' width='60.75' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Marine Parade&amp;lt;br/&amp;gt;Population:  46,950' data-id='Marine Parade'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e19' x='120.23' y='388.04' width='0.69' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Museum&amp;lt;br/&amp;gt;Population:     530' data-id='Museum'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e20' x='120.23' y='296.03' width='12.82' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Newton&amp;lt;br/&amp;gt;Population:   9,910' data-id='Newton'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e21' x='120.23' y='240.82' width='67.48' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Novena&amp;lt;br/&amp;gt;Population:  52,150' data-id='Novena'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e22' x='120.23' y='360.44' width='1.13' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Orchard&amp;lt;br/&amp;gt;Population:     870' data-id='Orchard'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e23' x='120.23' y='268.43' width='21.66' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Outram&amp;lt;br/&amp;gt;Population:  16,740' data-id='Outram'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e24' x='120.23' y='130.41' width='188.25' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Pasir Ris&amp;lt;br/&amp;gt;Population: 145,480' data-id='Pasir Ris'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e25' x='120.23' y='84.41' width='258.65' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Punggol&amp;lt;br/&amp;gt;Population: 199,880' data-id='Punggol'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e26' x='120.23' y='194.82' width='132.04' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Queenstown&amp;lt;br/&amp;gt;Population: 102,040' data-id='Queenstown'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e27' x='120.23' y='286.83' width='15.49' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: River Valley&amp;lt;br/&amp;gt;Population:  11,970' data-id='River Valley'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e28' x='120.23' y='277.63' width='16.87' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Rochor&amp;lt;br/&amp;gt;Population:  13,040' data-id='Rochor'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e29' x='120.23' y='397.24' width='0.18' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Seletar&amp;lt;br/&amp;gt;Population:     140' data-id='Seletar'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e30' x='120.23' y='176.42' width='143.21' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Sembawang&amp;lt;br/&amp;gt;Population: 110,670' data-id='Sembawang'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e31' x='120.23' y='38.4' width='343.62' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Sengkang&amp;lt;br/&amp;gt;Population: 265,550' data-id='Sengkang'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e32' x='120.23' y='158.01' width='153.02' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Serangoon&amp;lt;br/&amp;gt;Population: 118,250' data-id='Serangoon'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e33' x='120.23' y='314.43' width='5.43' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Singapore River&amp;lt;br/&amp;gt;Population:   4,200' data-id='Singapore River'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e34' x='120.23' y='332.83' width='3.34' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Southern Islands&amp;lt;br/&amp;gt;Population:   2,580' data-id='Southern Islands'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e35' x='120.23' y='369.64' width='0.78' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Sungei Kadut&amp;lt;br/&amp;gt;Population:     600' data-id='Sungei Kadut'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e36' x='120.23' y='20' width='368.73' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Tampines&amp;lt;br/&amp;gt;Population: 284,950' data-id='Tampines'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e37' x='120.23' y='259.23' width='31.75' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Tanglin&amp;lt;br/&amp;gt;Population:  24,540' data-id='Tanglin'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e38' x='120.23' y='305.23' width='10.27' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Tengah&amp;lt;br/&amp;gt;Population:   7,940' data-id='Tengah'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e39' x='120.23' y='139.61' width='181.2' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Toa Payoh&amp;lt;br/&amp;gt;Population: 140,030' data-id='Toa Payoh'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e40' x='120.23' y='378.84' width='0.76' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Western Water Catchment&amp;lt;br/&amp;gt;Population:     590' data-id='Western Water Catchment'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e41' x='120.23' y='56.8' width='330.63' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Woodlands&amp;lt;br/&amp;gt;Population: 255,510' data-id='Woodlands'/>\n   <rect id='svg_431e9299_dd81_414a_89b2_6070ab1e5233_e42' x='120.23' y='66' width='298.03' height='6.44' fill='#2CA02C' fill-opacity='1' stroke='none' title='Planning Area: Yishun&amp;lt;br/&amp;gt;Population: 230,320' data-id='Yishun'/>\n   <text x='329.71' y='118.29' font-size='6.4pt' font-family='Arial'>160k<\/text>\n   <text x='481.38' y='35.48' font-size='6.4pt' font-family='Arial'>278k<\/text>\n   <text x='235.75' y='219.5' font-size='6.4pt' font-family='Arial'>88k<\/text>\n   <text x='339.98' y='109.08' font-size='6.4pt' font-family='Arial'>168k<\/text>\n   <text x='315.39' y='127.49' font-size='6.4pt' font-family='Arial'>149k<\/text>\n   <text x='301.6' y='155.09' font-size='6.4pt' font-family='Arial'>139k<\/text>\n   <text x='230.63' y='228.7' font-size='6.4pt' font-family='Arial'>84k<\/text>\n   <text x='123.5' y='357.51' font-size='6.4pt' font-family='Arial'>2k<\/text>\n   <text x='368.77' y='99.88' font-size='6.4pt' font-family='Arial'>191k<\/text>\n   <text x='255.31' y='191.89' font-size='6.4pt' font-family='Arial'>103k<\/text>\n   <text x='126.53' y='329.91' font-size='6.4pt' font-family='Arial'>4k<\/text>\n   <text x='273.19' y='173.49' font-size='6.4pt' font-family='Arial'>117k<\/text>\n   <text x='418.13' y='81.48' font-size='6.4pt' font-family='Arial'>229k<\/text>\n   <text x='218.13' y='237.9' font-size='6.4pt' font-family='Arial'>75k<\/text>\n   <text x='455.82' y='53.88' font-size='6.4pt' font-family='Arial'>258k<\/text>\n   <text x='253.02' y='210.3' font-size='6.4pt' font-family='Arial'>101k<\/text>\n   <text x='123.89' y='348.31' font-size='6.4pt' font-family='Arial'>2k<\/text>\n   <text x='182.36' y='256.3' font-size='6.4pt' font-family='Arial'>47k<\/text>\n   <text x='121.82' y='394.32' font-size='6.4pt' font-family='Arial'>1k<\/text>\n   <text x='134.43' y='302.31' font-size='6.4pt' font-family='Arial'>10k<\/text>\n   <text x='189.09' y='247.1' font-size='6.4pt' font-family='Arial'>52k<\/text>\n   <text x='122.26' y='366.71' font-size='6.4pt' font-family='Arial'>1k<\/text>\n   <text x='143.27' y='274.7' font-size='6.4pt' font-family='Arial'>17k<\/text>\n   <text x='310.34' y='136.69' font-size='6.4pt' font-family='Arial'>145k<\/text>\n   <text x='380.73' y='90.68' font-size='6.4pt' font-family='Arial'>200k<\/text>\n   <text x='254.12' y='201.1' font-size='6.4pt' font-family='Arial'>102k<\/text>\n   <text x='137.1' y='293.11' font-size='6.4pt' font-family='Arial'>12k<\/text>\n   <text x='138.48' y='283.9' font-size='6.4pt' font-family='Arial'>13k<\/text>\n   <text x='121.32' y='403.52' font-size='6.4pt' font-family='Arial'>0k<\/text>\n   <text x='265.16' y='182.69' font-size='6.4pt' font-family='Arial'>111k<\/text>\n   <text x='465.71' y='44.68' font-size='6.4pt' font-family='Arial'>266k<\/text>\n   <text x='275.04' y='164.29' font-size='6.4pt' font-family='Arial'>118k<\/text>\n   <text x='126.57' y='320.71' font-size='6.4pt' font-family='Arial'>4k<\/text>\n   <text x='124.47' y='339.11' font-size='6.4pt' font-family='Arial'>3k<\/text>\n   <text x='121.91' y='375.92' font-size='6.4pt' font-family='Arial'>1k<\/text>\n   <text x='490.81' y='26.27' font-size='6.4pt' font-family='Arial'>285k<\/text>\n   <text x='153.36' y='265.5' font-size='6.4pt' font-family='Arial'>25k<\/text>\n   <text x='131.41' y='311.51' font-size='6.4pt' font-family='Arial'>8k<\/text>\n   <text x='303.28' y='145.89' font-size='6.4pt' font-family='Arial'>140k<\/text>\n   <text x='121.9' y='385.12' font-size='6.4pt' font-family='Arial'>1k<\/text>\n   <text x='452.71' y='63.08' font-size='6.4pt' font-family='Arial'>256k<\/text>\n   <text x='420.12' y='72.28' font-size='6.4pt' font-family='Arial'>230k<\/text>\n  <\/g>\n  <g clip-path='url(#svg_431e9299_dd81_414a_89b2_6070ab1e5233_c1)'>\n   <text x='72.84' y='402.97' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Seletar<\/text>\n   <text x='68.17' y='393.77' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Museum<\/text>\n   <text x='12.93' y='384.57' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Western Water Catchment<\/text>\n   <text x='52.98' y='375.36' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Sungei Kadut<\/text>\n   <text x='69.73' y='366.16' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Orchard<\/text>\n   <text x='72.83' y='356.96' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Changi<\/text>\n   <text x='72.05' y='347.76' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Mandai<\/text>\n   <text x='42.48' y='338.56' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Southern Islands<\/text>\n   <text x='45.21' y='329.36' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Downtown Core<\/text>\n   <text x='44.82' y='320.16' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Singapore River<\/text>\n   <text x='72.05' y='310.96' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Tengah<\/text>\n   <text x='71.28' y='301.76' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Newton<\/text>\n   <text x='58.19' y='292.56' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>River Valley<\/text>\n   <text x='72.45' y='283.35' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Rochor<\/text>\n   <text x='71.68' y='274.15' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Outram<\/text>\n   <text x='72.83' y='264.95' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Tanglin<\/text>\n   <text x='49.09' y='255.75' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Marine Parade<\/text>\n   <text x='70.89' y='246.55' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Novena<\/text>\n   <text x='57.66' y='237.35' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Jurong East<\/text>\n   <text x='58.45' y='228.15' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Bukit Timah<\/text>\n   <text x='73.62' y='218.95' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Bishan<\/text>\n   <text x='71.67' y='209.75' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Kallang<\/text>\n   <text x='55.71' y='200.54' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Queenstown<\/text>\n   <text x='67.4' y='191.34' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Clementi<\/text>\n   <text x='56.1' y='182.14' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Sembawang<\/text>\n   <text x='68.94' y='172.94' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Geylang<\/text>\n   <text x='60.76' y='163.74' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Serangoon<\/text>\n   <text x='51.82' y='154.54' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Bukit Panjang<\/text>\n   <text x='61.94' y='145.34' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Toa Payoh<\/text>\n   <text x='67.02' y='136.14' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Pasir Ris<\/text>\n   <text x='57.67' y='126.94' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Bukit Merah<\/text>\n   <text x='58.83' y='117.73' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Ang Mo Kio<\/text>\n   <text x='59.62' y='108.53' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Bukit Batok<\/text>\n   <text x='45.2' y='99.33' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Choa Chu Kang<\/text>\n   <text x='69.33' y='90.13' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Punggol<\/text>\n   <text x='66.6' y='80.93' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Hougang<\/text>\n   <text x='73.88' y='71.73' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Yishun<\/text>\n   <text x='60.12' y='62.53' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Woodlands<\/text>\n   <text x='55.85' y='53.33' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Jurong West<\/text>\n   <text x='63.49' y='44.13' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Sengkang<\/text>\n   <text x='75.17' y='34.93' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Bedok<\/text>\n   <text x='65.06' y='25.72' font-size='5.25pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>Tampines<\/text>\n   <text x='115.59' y='417.21' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>0k<\/text>\n   <text x='240.09' y='417.21' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>100k<\/text>\n   <text x='369.49' y='417.21' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>200k<\/text>\n   <text x='498.89' y='417.21' font-size='6.6pt' font-family='Arial' fill='#4D4D4D' fill-opacity='1'>300k<\/text>\n   <text x='283.88' y='429.68' font-size='8.25pt' font-family='Arial'>Total Population<\/text>\n   <text transform='translate(7.88,246.10) rotate(-90.00)' font-size='8.25pt' font-family='Arial'>Planning Area<\/text>\n   <text x='99.95' y='9.45' font-size='9.9pt' font-family='Arial'>Interactive Total Population by Planning Area (2024)<\/text>\n  <\/g>\n <\/g>\n<\/svg>","js":null,"uid":"svg_431e9299_dd81_414a_89b2_6070ab1e5233","ratio":1.333333333333333,"settings":{"tooltip":{"css":".tooltip_SVGID_ { background-color:white;color:black;border:1px solid gray;padding:5px; ; position:absolute;pointer-events:none;z-index:999;}","placement":"doc","opacity":0.9,"offx":10,"offy":0,"use_cursor_pos":true,"use_fill":false,"use_stroke":false,"delay_over":200,"delay_out":500},"hover":{"css":".hover_data_SVGID_ { fill-opacity:0.8;cursor:pointer; }","reactive":false,"nearest_distance":null},"hover_inv":{"css":""},"hover_key":{"css":".hover_key_SVGID_ { fill:orange;stroke:black;cursor:pointer; }\ntext.hover_key_SVGID_ { stroke:none;fill:orange; }\ncircle.hover_key_SVGID_ { fill:orange;stroke:black; }\nline.hover_key_SVGID_, polyline.hover_key_SVGID_ { fill:none;stroke:orange; }\nrect.hover_key_SVGID_, polygon.hover_key_SVGID_, path.hover_key_SVGID_ { fill:orange;stroke:none; }\nimage.hover_key_SVGID_ { stroke:orange; }","reactive":true},"hover_theme":{"css":".hover_theme_SVGID_ { fill:orange;stroke:black;cursor:pointer; }\ntext.hover_theme_SVGID_ { stroke:none;fill:orange; }\ncircle.hover_theme_SVGID_ { fill:orange;stroke:black; }\nline.hover_theme_SVGID_, polyline.hover_theme_SVGID_ { fill:none;stroke:orange; }\nrect.hover_theme_SVGID_, polygon.hover_theme_SVGID_, path.hover_theme_SVGID_ { fill:orange;stroke:none; }\nimage.hover_theme_SVGID_ { stroke:orange; }","reactive":true},"select":{"css":".select_data_SVGID_ { fill:red;stroke:black;cursor:pointer; }\ntext.select_data_SVGID_ { stroke:none;fill:red; }\ncircle.select_data_SVGID_ { fill:red;stroke:black; }\nline.select_data_SVGID_, polyline.select_data_SVGID_ { fill:none;stroke:red; }\nrect.select_data_SVGID_, polygon.select_data_SVGID_, path.select_data_SVGID_ { fill:red;stroke:none; }\nimage.select_data_SVGID_ { stroke:red; }","type":"multiple","only_shiny":true,"selected":[]},"select_inv":{"css":""},"select_key":{"css":".select_key_SVGID_ { fill:red;stroke:black;cursor:pointer; }\ntext.select_key_SVGID_ { stroke:none;fill:red; }\ncircle.select_key_SVGID_ { fill:red;stroke:black; }\nline.select_key_SVGID_, polyline.select_key_SVGID_ { fill:none;stroke:red; }\nrect.select_key_SVGID_, polygon.select_key_SVGID_, path.select_key_SVGID_ { fill:red;stroke:none; }\nimage.select_key_SVGID_ { stroke:red; }","type":"single","only_shiny":true,"selected":[]},"select_theme":{"css":".select_theme_SVGID_ { fill:red;stroke:black;cursor:pointer; }\ntext.select_theme_SVGID_ { stroke:none;fill:red; }\ncircle.select_theme_SVGID_ { fill:red;stroke:black; }\nline.select_theme_SVGID_, polyline.select_theme_SVGID_ { fill:none;stroke:red; }\nrect.select_theme_SVGID_, polygon.select_theme_SVGID_, path.select_theme_SVGID_ { fill:red;stroke:none; }\nimage.select_theme_SVGID_ { stroke:red; }","type":"single","only_shiny":true,"selected":[]},"zoom":{"min":1,"max":1,"duration":300},"toolbar":{"position":"topright","pngname":"diagram","tooltips":null,"fixed":false,"hidden":[],"delay_over":200,"delay_out":500},"sizing":{"rescale":true,"width":1}}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Interpretation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Highly populated areas such as Tampines, Bedok, and Sengkang stand out, reinforcing their role as major residential zones requiring more public services, infrastructure, and transport support.</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="summary" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Summary</h1>
+<p>This analysis revealed critical insights into Singapore’s 2024 population:</p>
+<ul>
+<li><p><strong>Age Profile</strong></p>
+<p>Regions like Punggol, Sengkang, and Tampines are home to younger populations; Bukit Timah and Queenstown have a higher share of elderly residents.</p></li>
+<li><p><strong>Gender Balance</strong></p>
+<p>Most areas are gender-balanced, though industrial zones show skewed ratios.</p></li>
+<li><p><strong>Population Concentration</strong></p>
+<p>Dense residential areas cluster around northeastern and central regions, highlighting where urban planning efforts should be prioritized.</p></li>
+</ul>
+</section>
+<section id="conclusion" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Conclusion</h1>
+<section id="conclusion-1" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="conclusion-1"><span class="header-section-number">6.1</span> Conclusion</h2>
+<p>This take-home exercise demonstrates how demographic data—when effectively cleaned, grouped, and visualized—can provide valuable insights for government and planners. Visualizing age structures, gender distribution, and population concentrations can guide more equitable and efficient decisions in housing, transportation, healthcare, and education.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2025 ISSS608 - Visual Analytics</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ Built with Quarto
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
