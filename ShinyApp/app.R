@@ -10,8 +10,7 @@ library(tidyr)
 library(plotly)
 library(DT)
 
-# wanganqi Load data
-#yyh
+# Load data
 kg <- fromJSON("data/MC1_graph.json")
 nodes_tbl <- as_tibble(kg$nodes)
 edges_tbl <- as_tibble(kg$links)
