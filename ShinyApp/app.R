@@ -10,6 +10,8 @@ library(ggraph)
 library(tidyr)
 library(plotly)
 library(DT)
+library(dplyr)
+library(ggplot2)
 
 # Load data
 kg <- fromJSON("data/MC1_graph.json")
@@ -19,79 +21,54 @@ edges_tbl <- as_tibble(kg$links)
 nodes_tbl <- nodes_tbl %>% mutate(id = as.character(id))
 edges_tbl <- edges_tbl %>% mutate(source = as.character(source), target = as.character(target))
 
-# Define custom theme with sophisticated styling
+# 简化的CSS - 移除复杂的z-index和不必要的样式
 ui <- fluidPage(
   useShinyjs(),
   
-  # Custom CSS styling to match the target design
+  # 大幅简化的CSS
   tags$head(
     tags$style(HTML("
-      /* Global styles */
       body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: 'Segoe UI', sans-serif;
         background-color: #f8f9fa;
         margin: 0;
-        padding: 0;
       }
       
-      /* Header styling */
       .header {
         background: linear-gradient(135deg, #6E3B47 0%, #A85D6B 100%);
         color: white;
         padding: 15px 25px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-        position: relative;
-        z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       }
       
       .header h1 {
         margin: 0;
         font-size: 22px;
         font-weight: 600;
-        display: flex;
-        align-items: center;
-        gap: 10px;
       }
       
-      .header .fa-bars {
-        font-size: 18px;
-        margin-right: 15px;
-        cursor: pointer;
-      }
-      
-      /* Main container */
       .main-container {
         display: flex;
         min-height: calc(100vh - 70px);
       }
       
-      /* Sidebar styling */
       .sidebar {
-        width: 260px;
+        width: 250px;
         background-color: #6E3B47;
         color: white;
-        padding: 0;
-        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
         overflow-y: auto;
       }
       
       .sidebar-item {
-        display: block;
         padding: 15px 20px;
         color: #ecf0f1;
-        text-decoration: none;
         border-bottom: 1px solid #34495e;
-        transition: all 0.3s ease;
         cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 12px;
+        transition: background-color 0.2s;
       }
       
       .sidebar-item:hover {
         background-color: #34495e;
-        color: white;
-        text-decoration: none;
       }
       
       .sidebar-item.active {
@@ -99,60 +76,28 @@ ui <- fluidPage(
         border-left: 4px solid #ffffff;
       }
       
-      .sidebar-item i {
-        width: 20px;
-        text-align: center;
-        font-size: 16px;
-      }
-      
-      /* Content area */
       .content-area {
         flex: 1;
-        padding: 0;
         background-color: #f8f9fa;
       }
       
-      /* Tab navigation */
-      .tab-navigation {
-        background-color: white;
-        padding: 0;
-        border-bottom: 1px solid #dee2e6;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      .tab-content {
+        display: none;
       }
       
-      .tab-nav-item {
-        display: inline-block;
-        padding: 15px 25px;
-        color: #6c757d;
-        text-decoration: none;
-        border-bottom: 3px solid transparent;
-        transition: all 0.3s ease;
-        cursor: pointer;
+      .tab-content.active {
+        display: block;
       }
       
-      .tab-nav-item:hover {
-        color: #8B4B5C;
-        text-decoration: none;
-      }
-      
-      .tab-nav-item.active {
-        color: #8B4B5C;
-        border-bottom-color: #8B4B5C;
-        font-weight: 600;
-      }
-      
-      /* Main content panel */
       .main-content {
         padding: 25px;
       }
       
-      /* Panel styling */
       .analysis-panel {
         background: white;
         border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         margin-bottom: 25px;
-        overflow: hidden;
       }
       
       .panel-header {
@@ -161,13 +106,13 @@ ui <- fluidPage(
         padding: 15px 20px;
         font-size: 18px;
         font-weight: 600;
+        border-radius: 8px 8px 0 0;
       }
       
       .panel-content {
         padding: 20px;
       }
       
-      /* Control panels */
       .control-panel {
         background: #f8f9fa;
         border-radius: 8px;
@@ -177,11 +122,7 @@ ui <- fluidPage(
       }
       
       .control-section {
-        margin-bottom: 20px;
-      }
-      
-      .control-section:last-child {
-        margin-bottom: 0;
+        margin-bottom: 15px;
       }
       
       .control-label {
@@ -191,187 +132,88 @@ ui <- fluidPage(
         display: block;
       }
       
-      /* Input styling */
-      .form-control, .form-select {
-        border: 1px solid #ced4da;
-        border-radius: 6px;
-        padding: 8px 12px;
-        font-size: 14px;
-        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-      }
-      
-      .form-control:focus, .form-select:focus {
-        border-color: #8B4B5C;
-        box-shadow: 0 0 0 0.2rem rgba(139, 75, 92, 0.25);
-      }
-      
-      /* Button styling */
       .btn-primary {
         background-color: #8B4B5C;
         border-color: #8B4B5C;
         padding: 10px 20px;
-        font-weight: 500;
         border-radius: 6px;
-        transition: all 0.3s ease;
+        transition: background-color 0.2s;
+        width: 100%;
       }
       
       .btn-primary:hover {
         background-color: #7a4451;
         border-color: #7a4451;
-        transform: translateY(-1px);
       }
       
-      /* Slider styling */
-      .irs--shiny .irs-bar {
-        background: #8B4B5C;
-      }
-      
-      .irs--shiny .irs-handle {
-        background: #8B4B5C;
-      }
-      
-      /* Checkbox and radio styling */
-      .form-check-input:checked {
-        background-color: #8B4B5C;
-        border-color: #8B4B5C;
-      }
-      
-      /* Layout grids */
       .two-column-layout {
         display: grid;
-        grid-template-columns: 1fr 2fr;
+        grid-template-columns: 280px 1fr;
         gap: 25px;
-        align-items: start;
       }
       
       .three-column-layout {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 20px;
       }
       
-      /* Plot containers */
       .plot-container {
         background: white;
         border-radius: 8px;
         padding: 15px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
       }
       
-      /* Table styling */
-      .dataTables_wrapper {
-        font-size: 14px;
-      }
-      
-      .dataTables_wrapper .dataTables_info {
-        color: #6c757d;
-      }
-      
-      /* Responsive design */
+      /* 移除所有复杂的z-index规则 */
+      /* 简化响应式设计 */
       @media (max-width: 768px) {
-        .sidebar {
-          width: 100%;
-          height: auto;
-        }
-        
         .main-container {
           flex-direction: column;
         }
-        
+        .sidebar {
+          width: 100%;
+        }
         .two-column-layout {
           grid-template-columns: 1fr;
         }
-        
-        .three-column-layout {
-          grid-template-columns: 1fr;
-        }
-      }
-      
-      /* Custom scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      
-      ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-      }
-      
-      ::-webkit-scrollbar-thumb {
-        background: #8B4B5C;
-        border-radius: 4px;
-      }
-      
-      ::-webkit-scrollbar-thumb:hover {
-        background: #7a4451;
       }
     "))
   ),
   
   # Header
   div(class = "header",
-      h1(
-        tags$i(class = "fas fa-bars"),
-        tags$i(class = "fas fa-music"),
-        "Music Network Analysis"
-      )
+      h1("Music Network Analysis")
   ),
   
   # Main container
   div(class = "main-container",
       # Sidebar
       div(class = "sidebar",
-          div(class = "sidebar-item active", `data-tab` = "overview",
-              tags$i(class = "fas fa-chart-pie"),
-              "Overview Analysis"
-          ),
-          div(class = "sidebar-item", `data-tab` = "eda",
-              tags$i(class = "fas fa-chart-bar"),
-              "Exploratory Data Analysis"
-          ),
-          div(class = "sidebar-item", `data-tab` = "network",
-              tags$i(class = "fas fa-project-diagram"),
-              "Network Analysis"
-          ),
-          div(class = "sidebar-item", `data-tab` = "influence",
-              tags$i(class = "fas fa-users"),
-              "Influence & Collaboration"
-          ),
-          div(class = "sidebar-item", `data-tab` = "oceanus",
-              tags$i(class = "fas fa-water"),
-              "Oceanus Folk Analysis"
-          ),
-          div(class = "sidebar-item", `data-tab` = "emerging",
-              tags$i(class = "fas fa-star"),
-              "Emerging Artists"
-          ),
-          div(class = "sidebar-item", `data-tab` = "data",
-              tags$i(class = "fas fa-table"),
-              "Data Source"
-          ),
-          div(class = "sidebar-item", `data-tab` = "guide",
-              tags$i(class = "fas fa-question-circle"),
-              "User Guide"
-          )
+          div(class = "sidebar-item active", `data-tab` = "overview", "Overview"),
+          div(class = "sidebar-item", `data-tab` = "eda", "Data Analysis"),
+          div(class = "sidebar-item", `data-tab` = "network", " Network"),
+          div(class = "sidebar-item", `data-tab` = "influence", "Influence"),
+          div(class = "sidebar-item", `data-tab` = "oceanus", "Oceanus Folk"),
+          div(class = "sidebar-item", `data-tab` = "emerging", "merging"),
+          div(class = "sidebar-item", `data-tab` = "data", "Data"),
+          div(class = "sidebar-item", `data-tab` = "guide", "Guide")
       ),
       
       # Content area
       div(class = "content-area",
-          # Tab content for Overview
-          div(id = "overview-content", class = "tab-content",
-              div(class = "tab-navigation",
-                  span(class = "tab-nav-item active", "Overview"),
-                  span(class = "tab-nav-item", "Summary Statistics")
-              ),
+          # Overview Tab
+          div(id = "overview-content", class = "tab-content active",
               div(class = "main-content",
                   div(class = "analysis-panel",
-                      div(class = "panel-header", "Music Network Overview"),
+                      div(class = "panel-header", "Network Overview"),
                       div(class = "panel-content",
                           div(class = "three-column-layout",
                               div(class = "plot-container",
-                                  h4("Network Statistics"),
-                                  p("Total Nodes: ", textOutput("total_nodes", inline = TRUE)),
-                                  p("Total Edges: ", textOutput("total_edges", inline = TRUE)),
-                                  p("Network Density: ", textOutput("network_density", inline = TRUE))
+                                  h4("Statistics"),
+                                  p("Nodes: ", textOutput("total_nodes", inline = TRUE)),
+                                  p("Edges: ", textOutput("total_edges", inline = TRUE)),
+                                  p("Density: ", textOutput("network_density", inline = TRUE))
                               ),
                               div(class = "plot-container",
                                   h4("Node Types"),
@@ -387,49 +229,34 @@ ui <- fluidPage(
               )
           ),
           
-          # Tab content for EDA
-          div(id = "eda-content", class = "tab-content", style = "display: none;",
-              div(class = "tab-navigation",
-                  span(class = "tab-nav-item active", "Distribution Analysis"),
-                  span(class = "tab-nav-item", "Network Properties")
-              ),
+          # EDA Tab
+          div(id = "eda-content", class = "tab-content",
               div(class = "main-content",
                   div(class = "analysis-panel",
-                      div(class = "panel-header", "Edge Type Distribution"),
+                      div(class = "panel-header", "Edge Distribution"),
                       div(class = "panel-content",
                           div(class = "two-column-layout",
                               div(class = "control-panel",
                                   div(class = "control-section",
-                                      tags$label(class = "control-label", "Top N Edge Types:"),
-                                      sliderInput("eda_edge_top_n", "", min = 5, max = 20, value = 10, step = 1)
+                                      tags$label(class = "control-label", "Top N:"),
+                                      sliderInput("eda_edge_top_n", "", min = 5, max = 20, value = 10)
                                   ),
                                   div(class = "control-section",
                                       checkboxInput("eda_edge_sort", "Sort by Count", value = TRUE)
-                                  )
+                                  ),
+                                  actionButton("update_eda_edge", "Update", class = "btn-primary")
                               ),
                               div(class = "plot-container",
                                   plotlyOutput("eda_edge_type", height = "400px")
                               )
                           )
                       )
-                  ),
-                  div(class = "analysis-panel",
-                      div(class = "panel-header", "Node Type Distribution"),
-                      div(class = "panel-content",
-                          div(class = "plot-container",
-                              plotlyOutput("eda_node_type", height = "400px")
-                          )
-                      )
                   )
               )
           ),
           
-          # Tab content for Network Analysis
-          div(id = "network-content", class = "tab-content", style = "display: none;",
-              div(class = "tab-navigation",
-                  span(class = "tab-nav-item active", "Network Overview"),
-                  span(class = "tab-nav-item", "Interactive Network")
-              ),
+          # Network Tab
+          div(id = "network-content", class = "tab-content",
               div(class = "main-content",
                   div(class = "analysis-panel",
                       div(class = "panel-header", "Network Visualization"),
@@ -437,14 +264,12 @@ ui <- fluidPage(
                           div(class = "two-column-layout",
                               div(class = "control-panel",
                                   div(class = "control-section",
-                                      tags$label(class = "control-label", "Network Layout:"),
+                                      tags$label(class = "control-label", "Layout:"),
                                       selectInput("network_layout", "",
-                                                  choices = c("Fruchterman-Reingold" = "fr",
-                                                              "Circle" = "circle",
-                                                              "Kamada-Kawai" = "kk",
-                                                              "Tree" = "tree"), 
-                                                  selected = "fr")
-                                  )
+                                                  choices = c("Force" = "fr", "Circle" = "circle", 
+                                                              "Tree" = "tree"), selected = "fr")
+                                  ),
+                                  actionButton("update_network", "Update", class = "btn-primary")
                               ),
                               div(class = "plot-container",
                                   plotOutput("plot_sailor_network", height = "500px")
@@ -453,7 +278,7 @@ ui <- fluidPage(
                       )
                   ),
                   div(class = "analysis-panel",
-                      div(class = "panel-header", "Interactive Network Explorer"),
+                      div(class = "panel-header", "Interactive Network"),
                       div(class = "panel-content",
                           div(class = "plot-container",
                               visNetworkOutput("network_plot", height = "600px")
@@ -463,22 +288,19 @@ ui <- fluidPage(
               )
           ),
           
-          # Tab content for Influence & Collaboration
-          div(id = "influence-content", class = "tab-content", style = "display: none;",
-              div(class = "tab-navigation",
-                  span(class = "tab-nav-item active", "Top Influencers"),
-                  span(class = "tab-nav-item", "Top Collaborators")
-              ),
+          # Influence Tab
+          div(id = "influence-content", class = "tab-content",
               div(class = "main-content",
                   div(class = "analysis-panel",
-                      div(class = "panel-header", "Top Influencers Analysis"),
+                      div(class = "panel-header", "Top Influencers"),
                       div(class = "panel-content",
                           div(class = "two-column-layout",
                               div(class = "control-panel",
                                   div(class = "control-section",
-                                      tags$label(class = "control-label", "Top N Influencers:"),
+                                      tags$label(class = "control-label", "Top N:"),
                                       sliderInput("influencers_top_n", "", min = 5, max = 20, value = 10)
-                                  )
+                                  ),
+                                  actionButton("update_influencers", "Update", class = "btn-primary")
                               ),
                               div(
                                 div(class = "plot-container",
@@ -490,103 +312,60 @@ ui <- fluidPage(
                               )
                           )
                       )
-                  ),
-                  div(class = "analysis-panel",
-                      div(class = "panel-header", "Top Collaborators Analysis"),
-                      div(class = "panel-content",
-                          div(class = "two-column-layout",
-                              div(class = "control-panel",
-                                  div(class = "control-section",
-                                      tags$label(class = "control-label", "Top N Collaborators:"),
-                                      sliderInput("collaborators_top_n", "", min = 5, max = 20, value = 10)
-                                  )
-                              ),
-                              div(
-                                div(class = "plot-container",
-                                    plotlyOutput("plot_top_collaborators", height = "300px")
-                                ),
-                                div(class = "plot-container", style = "margin-top: 20px;",
-                                    DTOutput("collaborators_table")
-                                )
-                              )
-                          )
-                      )
                   )
               )
           ),
           
-          # Tab content for Oceanus Folk Analysis
-          div(id = "oceanus-content", class = "tab-content", style = "display: none;",
-              div(class = "tab-navigation",
-                  span(class = "tab-nav-item active", "Influence Network"),
-                  span(class = "tab-nav-item", "Timeline Analysis"),
-                  span(class = "tab-nav-item", "Genre Evolution")
-              ),
+          # Oceanus Tab
+          div(id = "oceanus-content", class = "tab-content",
               div(class = "main-content",
                   div(class = "analysis-panel",
-                      div(class = "panel-header", "Oceanus Folk Influence Network"),
+                      div(class = "panel-header", "Oceanus Folk Network"),
                       div(class = "panel-content",
                           div(class = "plot-container",
                               visNetworkOutput("oceanus_network", height = "600px")
                           )
                       )
-                  ),
-                  div(class = "analysis-panel",
-                      div(class = "panel-header", "Timeline Trends"),
-                      div(class = "panel-content",
-                          div(class = "two-column-layout",
-                              div(class = "control-panel",
-                                  div(class = "control-section",
-                                      tags$label(class = "control-label", "Year Range:"),
-                                      sliderInput("oceanus_time_range", "", min = 1900, max = 2025, value = c(1950, 2025))
-                                  )
-                              ),
-                              div(class = "plot-container",
-                                  plotlyOutput("plot_oceanus_timeline", height = "400px")
-                              )
-                          )
-                      )
                   )
               )
           ),
           
-          # Tab content for Emerging Artists
-          div(id = "emerging-content", class = "tab-content", style = "display: none;",
+          # Emerging Tab
+          div(id = "emerging-content", class = "tab-content",
               div(class = "main-content",
                   div(class = "analysis-panel",
-                      div(class = "panel-header", "Emerging Artists Discovery"),
+                      div(class = "panel-header", "Emerging Artists"),
                       div(class = "panel-content",
                           div(style = "text-align: center; padding: 40px;",
-                              tags$i(class = "fas fa-star", style = "font-size: 48px; color: #8B4B5C; margin-bottom: 20px;"),
-                              h3("Coming Soon: Emerging Artists Analysis"),
-                              p("This section will explore potential breakout artists based on influence propagation and collaborative patterns.", 
-                                style = "color: #6c757d; font-size: 16px; max-width: 600px; margin: 0 auto;")
+                              h3("Coming Soon"),
+                              p("Emerging artists analysis will be available soon.")
                           )
                       )
                   )
               )
           ),
           
-          # Additional tab contents for Data Source and User Guide
-          div(id = "data-content", class = "tab-content", style = "display: none;",
+          # Data Tab
+          div(id = "data-content", class = "tab-content",
               div(class = "main-content",
                   div(class = "analysis-panel",
-                      div(class = "panel-header", "Data Source Information"),
+                      div(class = "panel-header", "Data Source"),
                       div(class = "panel-content",
-                          p("Music knowledge graph data loaded from MC1_graph.json"),
-                          p("Data contains nodes and edges representing musical entities and their relationships.")
+                          p("Music knowledge graph data from MC1_graph.json"),
+                          p("Contains nodes and edges representing musical relationships.")
                       )
                   )
               )
           ),
           
-          div(id = "guide-content", class = "tab-content", style = "display: none;",
+          # Guide Tab
+          div(id = "guide-content", class = "tab-content",
               div(class = "main-content",
                   div(class = "analysis-panel",
                       div(class = "panel-header", "User Guide"),
                       div(class = "panel-content",
-                          p("Navigate through different sections using the sidebar menu."),
-                          p("Each section provides different analytical perspectives on the music network data.")
+                          p("Navigate using the sidebar menu."),
+                          p("Each section provides different analytical perspectives.")
                       )
                   )
               )
@@ -594,294 +373,211 @@ ui <- fluidPage(
       )
   ),
   
-  # JavaScript for tab switching
+  # 大幅简化的JavaScript
   tags$script(HTML("
     $(document).ready(function() {
       $('.sidebar-item').click(function() {
-        // Remove active class from all sidebar items
         $('.sidebar-item').removeClass('active');
-        // Add active class to clicked item
+        $('.tab-content').removeClass('active');
         $(this).addClass('active');
-        
-        // Hide all tab contents
-        $('.tab-content').hide();
-        
-        // Show selected tab content
         var tabId = $(this).data('tab') + '-content';
-        $('#' + tabId).show();
+        $('#' + tabId).addClass('active');
+        
+        // 简单的窗口resize触发
+        setTimeout(function() {
+          $(window).trigger('resize');
+        }, 100);
       });
     });
   "))
 )
 
-
-
-## Server
+# 优化的Server逻辑
 server <- function(input, output, session) {
   sailor_id <- nodes_tbl %>% filter(name == "Sailor Shift") %>% pull(id)
   
-  # EDA
-  output$eda_edge_type <- renderPlotly({
-    data <- edges_tbl %>%
-      count(`Edge Type`, sort = input$eda_edge_sort) %>%
-      head(input$eda_edge_top_n)
-    
-    ggplotly(
-      ggplot(data, aes(x = n, y = reorder(`Edge Type`, n))) +
-        geom_col(fill = "#3498db") +
-        labs(title = "Edge Type Distribution", x = "Count", y = "Edge Type") +
-        theme_minimal()
+  # 缓存基础数据
+  overview_data <- reactive({
+    list(
+      total_nodes = nrow(nodes_tbl),
+      total_edges = nrow(edges_tbl),
+      density = round(nrow(edges_tbl) / (nrow(nodes_tbl) * (nrow(nodes_tbl) - 1)), 4)
     )
   })
   
-  output$eda_node_type <- renderPlotly({
+  # Overview outputs - 移除不必要的反应性
+  output$total_nodes <- renderText({ overview_data()$total_nodes })
+  output$total_edges <- renderText({ overview_data()$total_edges })
+  output$network_density <- renderText({ overview_data()$density })
+  
+  output$overview_node_types <- renderPlotly({
     data <- nodes_tbl %>%
       count(`Node Type`, sort = TRUE) %>%
-      head(input$eda_node_top_n)
+      head(5)
     
-    ggplotly(
-      ggplot(data, aes(x = n, y = reorder(`Node Type`, n))) +
-        geom_col(fill = "#2ecc71") +
-        labs(title = "Node Type Distribution", x = "Count", y = "Node Type") +
-        theme_minimal()
-    )
+    p <- ggplot(data, aes(x = reorder(`Node Type`, n), y = n)) +
+      geom_col(fill = "#8B4B5C") +
+      coord_flip() +
+      labs(x = "", y = "Count") +
+      theme_minimal(base_size = 10)
+    
+    ggplotly(p, tooltip = c("x", "y")) %>%
+      config(displayModeBar = FALSE) %>%
+      layout(margin = list(l = 80, r = 20, t = 20, b = 30))
   })
   
-  # Static Sailor Shift Network
-  output$plot_sailor_network <- renderPlot({
+  output$overview_edge_types <- renderPlotly({
+    data <- edges_tbl %>%
+      count(`Edge Type`, sort = TRUE) %>%
+      head(5)
+    
+    p <- ggplot(data, aes(x = reorder(`Edge Type`, n), y = n)) +
+      geom_col(fill = "#A85D6B") +
+      coord_flip() +
+      labs(x = "", y = "Count") +
+      theme_minimal(base_size = 10)
+    
+    ggplotly(p, tooltip = c("x", "y")) %>%
+      config(displayModeBar = FALSE) %>%
+      layout(margin = list(l = 80, r = 20, t = 20, b = 30))
+  })
+  
+  # EDA - 只在按钮点击时更新
+  eda_edge_data <- eventReactive(input$update_eda_edge, {
+    edges_tbl %>%
+      count(`Edge Type`, sort = input$eda_edge_sort) %>%
+      head(input$eda_edge_top_n)
+  }, ignoreNULL = FALSE)
+  
+  output$eda_edge_type <- renderPlotly({
+    data <- eda_edge_data()
+    
+    p <- ggplot(data, aes(x = n, y = reorder(`Edge Type`, n))) +
+      geom_col(fill = "#3498db") +
+      labs(title = "Edge Type Distribution", x = "Count", y = "") +
+      theme_minimal()
+    
+    ggplotly(p, tooltip = c("x", "y")) %>%
+      config(displayModeBar = FALSE) %>%
+      layout(margin = list(l = 120, r = 20, t = 40, b = 40))
+  })
+  
+  # Network - 简化网络图生成
+  network_data <- eventReactive(input$update_network, {
     influence_types <- c("InterpolatesFrom", "CoverOf", "InStyleOf",
                          "PerformerOf", "ComposerOf", "LyricistOf", "ProducerOf", "MemberOf")
     
     edges_sailor <- edges_tbl %>%
       filter((source == sailor_id | target == sailor_id) & `Edge Type` %in% influence_types)
     
-    group_ids <- edges_tbl %>% filter(`Edge Type` == "MemberOf", source == sailor_id) %>% pull(target)
-    song_ids <- edges_tbl %>% filter(`Edge Type` == "PerformerOf", source == sailor_id) %>% pull(target)
-    
-    extra_edges <- edges_tbl %>%
-      filter(target %in% c(group_ids, song_ids)) %>%
-      filter(`Edge Type` %in% influence_types)
-    
-    all_edges <- bind_rows(edges_sailor, extra_edges) %>% distinct()
-    node_ids <- unique(c(all_edges$source, all_edges$target))
+    node_ids <- unique(c(edges_sailor$source, edges_sailor$target))
     nodes_sub <- nodes_tbl %>% filter(id %in% node_ids)
     
-    if (nrow(nodes_sub) == 0 || nrow(all_edges) == 0) {
-      return(ggplot() + theme_void() + labs(title = "No data to display."))
+    list(nodes = nodes_sub, edges = edges_sailor)
+  }, ignoreNULL = FALSE)
+  
+  output$plot_sailor_network <- renderPlot({
+    data <- network_data()
+    
+    if (nrow(data$nodes) == 0 || nrow(data$edges) == 0) {
+      return(ggplot() + theme_void() + labs(title = "No data available"))
     }
     
     graph <- tbl_graph(
-      nodes = nodes_sub %>% select(id, name, `Node Type`),
-      edges = all_edges %>% select(source, target, `Edge Type`),
+      nodes = data$nodes %>% select(id, name, `Node Type`),
+      edges = data$edges %>% select(source, target, `Edge Type`),
       node_key = "id"
     )
     
     ggraph(graph, layout = input$network_layout) +
-      geom_edge_link(aes(color = `Edge Type`), alpha = 0.5) +
+      geom_edge_link(aes(color = `Edge Type`), alpha = 0.6) +
       geom_node_point(aes(color = `Node Type`), size = 3) +
-      geom_node_text(aes(label = name), repel = TRUE, size = 3) +
+      geom_node_text(aes(label = name), repel = TRUE, size = 2.5) +
       theme_void() +
-      labs(title = "Sailor Shift's Influence & Collaboration Network")
+      labs(title = "Sailor Shift Network")
   })
   
-  # visNetwork
+  # 简化的visNetwork
   output$network_plot <- renderVisNetwork({
-    edges_sub <- edges_tbl %>% filter(source == sailor_id | target == sailor_id)
+    edges_sub <- edges_tbl %>% filter(source == sailor_id | target == sailor_id) %>% head(50) # 限制数量
     node_ids <- unique(c(edges_sub$source, edges_sub$target))
     nodes_sub <- nodes_tbl %>% filter(id %in% node_ids)
     
     nodes <- nodes_sub %>% mutate(label = name, group = `Node Type`)
-    edges <- edges_sub %>% mutate(from = source, to = target, arrows = "to", title = `Edge Type`)
+    edges <- edges_sub %>% mutate(from = source, to = target, arrows = "to")
     
     visNetwork(nodes, edges) %>%
-      visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE) %>%
-      visInteraction(navigationButtons = TRUE)
+      visOptions(highlightNearest = TRUE) %>%
+      visLayout(randomSeed = 42)
   })
   
-  # Top Influencers
-  influencers_data <- reactive({
+  # Influencers - 简化计算
+  influencers_data <- eventReactive(input$update_influencers, {
     works <- edges_tbl %>%
-      filter(source == sailor_id, `Edge Type` %in% c("PerformerOf", "ComposerOf", "LyricistOf", "ProducerOf")) %>%
-      pull(target)
+      filter(source == sailor_id, `Edge Type` %in% c("PerformerOf", "ComposerOf")) %>%
+      pull(target) %>% head(20) # 限制数量
     
     infl_edges <- edges_tbl %>%
-      filter(source %in% works, `Edge Type` %in% c("InStyleOf", "InterpolatesFrom", "CoverOf", "DirectlySamples"))
+      filter(source %in% works, `Edge Type` %in% c("InStyleOf", "CoverOf"))
     
-    infl_sources <- edges_tbl %>%
-      filter(target %in% infl_edges$target,
-             `Edge Type` %in% c("PerformerOf", "ComposerOf", "LyricistOf", "ProducerOf")) %>%
+    edges_tbl %>%
+      filter(target %in% infl_edges$target, `Edge Type` %in% c("PerformerOf", "ComposerOf")) %>%
       count(source, sort = TRUE) %>%
       left_join(nodes_tbl, by = c("source" = "id")) %>%
       filter(!is.na(name)) %>%
       select(name, genre, times = n) %>%
       head(input$influencers_top_n)
-    
-    infl_sources
-  })
+  }, ignoreNULL = FALSE)
   
   output$plot_top_influencers <- renderPlotly({
     data <- influencers_data()
-    ggplotly(
-      ggplot(data, aes(x = reorder(name, times), y = times)) +
+    
+    if(nrow(data) == 0) {
+      p <- ggplot() + theme_void() + labs(title = "Click Update to view")
+    } else {
+      p <- ggplot(data, aes(x = reorder(name, times), y = times)) +
         geom_col(fill = "steelblue") +
         coord_flip() +
-        labs(title = "Top Influencers", x = "Artist", y = "Influences") +
+        labs(title = "Top Influencers", x = "", y = "Influences") +
         theme_minimal()
-    )
+    }
+    
+    ggplotly(p, tooltip = c("x", "y")) %>%
+      config(displayModeBar = FALSE) %>%
+      layout(margin = list(l = 100, r = 20, t = 40, b = 40))
   })
   
   output$influencers_table <- renderDT({
     influencers_data()
-  })
+  }, options = list(pageLength = 5, dom = 't'))
   
-  # Top Collaborators
-  collaborators_data <- reactive({
-    works <- edges_tbl %>% filter(source == sailor_id) %>% pull(target)
-    
-    co_edges <- edges_tbl %>%
-      filter(target %in% works, source != sailor_id) %>%
-      count(source, sort = TRUE) %>%
-      left_join(nodes_tbl, by = c("source" = "id")) %>%
-      filter(!is.na(name)) %>%
-      select(name, genre, times = n) %>%
-      head(input$collaborators_top_n)
-    
-    co_edges
-  })
-  
-  output$plot_top_collaborators <- renderPlotly({
-    data <- collaborators_data()
-    ggplotly(
-      ggplot(data, aes(x = reorder(name, times), y = times)) +
-        geom_col(fill = "darkorange") +
-        coord_flip() +
-        labs(title = "Top Collaborators", x = "Artist", y = "Collaborations") +
-        theme_minimal()
-    )
-  })
-  
-  output$collaborators_table <- renderDT({
-    collaborators_data()
-  })
-  
-  # Oceanus Influence Network
+  # 简化的Oceanus网络
   output$oceanus_network <- renderVisNetwork({
-    oceanus_ids <- nodes_tbl %>% filter(str_detect(tolower(genre), "oceanus folk")) %>% pull(id)
-    influence_edges <- edges_tbl %>%
-      filter(source %in% oceanus_ids) %>%
-      filter(`Edge Type` %in% c("InStyleOf", "LyricalReferenceTo", "CoverOf", "InterpolatesFrom", "DirectlySamples"))
+    oceanus_ids <- nodes_tbl %>% 
+      filter(str_detect(tolower(genre), "oceanus")) %>% 
+      pull(id) %>% head(10) # 限制数量
     
-    sub_nodes <- nodes_tbl %>%
-      filter(id %in% unique(c(influence_edges$source, influence_edges$target))) %>%
-      mutate(index = row_number())
+    if(length(oceanus_ids) == 0) {
+      nodes <- data.frame(id = 1, label = "No Oceanus Folk Data", group = "Unknown")
+      edges <- data.frame(from = integer(0), to = integer(0))
+    } else {
+      influence_edges <- edges_tbl %>%
+        filter(source %in% oceanus_ids, `Edge Type` %in% c("InStyleOf", "CoverOf")) %>%
+        head(30) # 限制边数量
+      
+      node_ids <- unique(c(influence_edges$source, influence_edges$target))
+      nodes_sub <- nodes_tbl %>% filter(id %in% node_ids)
+      
+      nodes <- nodes_sub %>% mutate(label = name, group = genre)
+      edges <- influence_edges %>% mutate(from = source, to = target, arrows = "to")
+    }
     
-    id_map <- sub_nodes %>% select(id, index)
-    edges_sub <- influence_edges %>%
-      left_join(id_map, by = c("source" = "id")) %>%
-      rename(from = index) %>%
-      left_join(id_map, by = c("target" = "id")) %>%
-      rename(to = index) %>%
-      select(from, to, `Edge Type`)
-    
-    visNetwork(
-      sub_nodes %>% mutate(id = index, label = name, group = genre),
-      edges_sub %>% rename(title = `Edge Type`)
-    ) %>%
+    visNetwork(nodes, edges) %>%
       visEdges(arrows = "to") %>%
       visOptions(highlightNearest = TRUE) %>%
-      visLegend() %>%
       visLayout(randomSeed = 42)
-  })
-  
-  output$plot_oceanus_timeline <- renderPlotly({
-    oceanus_ids <- nodes_tbl %>% 
-      filter(str_detect(tolower(genre), "oceanus folk")) %>% 
-      pull(id)
-    
-    influenced_targets <- edges_tbl %>% 
-      filter(source %in% oceanus_ids,
-             `Edge Type` %in% c("InStyleOf", "LyricalReferenceTo", "CoverOf", "InterpolatesFrom", "DirectlySamples")) %>%
-      pull(target) %>% 
-      unique()
-    
-    timeline_data <- nodes_tbl %>%
-      filter(id %in% influenced_targets) %>%
-      filter(!is.na(release_date) | !is.na(written_date)) %>%
-      mutate(
-        date_str = coalesce(as.character(release_date), as.character(written_date)),
-        year = as.integer(substr(date_str, 1, 4))
-      ) %>%
-      filter(!is.na(year),
-             year >= input$oceanus_time_range[1],
-             year <= input$oceanus_time_range[2]) %>%
-      count(year)
-    
-    ggplotly(
-      ggplot(timeline_data, aes(x = year, y = n)) +
-        geom_line(color = "steelblue") +
-        geom_point(color = "tomato") +
-        labs(title = "Oceanus Folk Influence Over Time", x = "Year", y = "Influenced Works") +
-        theme_minimal()
-    )
-  })
-  
-  
-  output$plot_top_genres <- renderPlotly({
-    oceanus_ids <- nodes_tbl %>% filter(str_detect(tolower(genre), "oceanus folk")) %>% pull(id)
-    influenced <- edges_tbl %>% filter(source %in% oceanus_ids) %>% pull(target)
-    
-    genres <- nodes_tbl %>%
-      filter(id %in% influenced, !is.na(genre)) %>%
-      count(genre, sort = TRUE) %>%
-      head(10)
-    
-    ggplotly(
-      ggplot(genres, aes(x = reorder(genre, n), y = n)) +
-        geom_col(fill = "darkgreen") +
-        coord_flip() +
-        labs(title = "Top Genres Influenced by Oceanus Folk", x = "Genre", y = "Count") +
-        theme_minimal()
-    )
-  })
-  
-  output$plot_top_artists <- renderPlotly({
-    oceanus_ids <- nodes_tbl %>% filter(str_detect(tolower(genre), "oceanus folk")) %>% pull(id)
-    influenced <- edges_tbl %>% filter(source %in% oceanus_ids) %>% pull(target)
-    
-    artists <- nodes_tbl %>%
-      filter(id %in% influenced, `Node Type` == "Person") %>%
-      count(name, sort = TRUE) %>%
-      head(10)
-    
-    ggplotly(
-      ggplot(artists, aes(x = reorder(name, n), y = n)) +
-        geom_col(fill = "purple") +
-        coord_flip() +
-        labs(title = "Top Artists Influenced by Oceanus Folk", x = "Artist", y = "Count") +
-        theme_minimal()
-    )
-  })
-  
-  output$plot_genre_evolution <- renderPlotly({
-    data <- nodes_tbl %>%
-      filter(str_detect(tolower(genre), "oceanus folk"),
-             !is.na(release_date) | !is.na(written_date)) %>%
-      mutate(year = as.integer(substr(coalesce(release_date, written_date), 1, 4))) %>%
-      filter(!is.na(year),
-             year >= input$evolution_year_range[1],
-             year <= input$evolution_year_range[2]) %>%
-      separate_rows(genre, sep = ",\\s*") %>%
-      count(year, genre)
-    
-    ggplotly(
-      ggplot(data, aes(x = year, y = n, fill = genre)) +
-        geom_area(alpha = 0.7) +
-        labs(title = "Evolution of Oceanus Folk and Related Genres", x = "Year", y = "Count") +
-        theme_minimal()
-    )
   })
 }
 
-
 # Run the app
-shinyApp(ui, server)
+shinyApp(ui = ui, server = server)
