@@ -1,7 +1,10 @@
 ---
-title: "project"
+title: "prototype"
+format: html
 ---
+
 # Import Data
+
 ```{r}
 #| code-fold: true
 #| warning: false
@@ -11,7 +14,7 @@ pacman::p_load(tidyverse, jsonlite, SmartEDA, tidygraph, ggraph, dplyr)
 ```{r}
 #| code-fold: true
 #| warning: false
-kg <- fromJSON("data/MC1_release/MC1_graph.json")
+kg <- fromJSON("data/MC1_graph.json")
 ```
 
 # Data Wrangling
@@ -52,7 +55,6 @@ id_map <- tibble(id = nodes_tbl$id,
                  index = seq_len(
                    nrow(nodes_tbl)))
 ```
-
 
 ### Step 2: Map source and target IDS to row indices
 
@@ -120,7 +122,6 @@ sailor_songs_pre2028 <- nodes_tbl %>%
          as.integer(release_date) < 2028)
 
 ```
-
 
 ```{r}
 
@@ -240,8 +241,6 @@ visNetwork(graph_nodes, linked_edges, height = "700px", width = "100%") %>%
 
 ```
 
-
-
 ```{r}
 # 先构造一个 dynamic 的 "SailorWork" id 列表，按 release_date 和 Sailor performerOf 筛选
 sailor_work_ids_by_date <- nodes_tbl %>%
@@ -276,7 +275,6 @@ other_node_connection <- related_edges_to_works %>%
 
 ```
 
-
 ```{r}
 graph_nodes <- graph_nodes %>%
   left_join(other_node_connection, by = "id") %>%
@@ -305,8 +303,6 @@ visNetwork(graph_nodes, linked_edges, height = "700px", width = "100%") %>%
   visLayout(randomSeed = 123)
 
 ```
-
-
 
 ```{r}
 # Step 1: 找到 Sailor 的 notable 歌曲和专辑
@@ -467,6 +463,7 @@ ggplot(folk_trend, aes(x = release_year, y = n, color = type)) +
 
 
 ```
+
 ###最终版
 
 ```{r}
@@ -681,4 +678,3 @@ ggplot(genre_influence_count, aes(x = reorder(genre, count), y = count)) +
 
 
 ```
-

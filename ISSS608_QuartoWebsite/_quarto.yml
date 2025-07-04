@@ -2,53 +2,26 @@ project:
   type: website
 
 website:
-  title: "ISSS608-VAA Visual Analytics Project"
+  title: "🎵 Sailing the Tides of Oceanus Folk"
+  favicon: images/favicon.png
   navbar:
-    background: "#2C3E50"
-    foreground: "white"
-    hover: "auto"
-    dropdown-menu:
-      background: "#34495E"
-      foreground: "white"
-      hover: "#2C3E50"
-    left:
-      - text: "Overview"
-        href: "project_website/overview.html"
-          
-      - text: "Prototype"
-        menu:
-          - text: "EDA"
-            href: "project_website/EDA.html"
-          - text: "Task 1"
-            href: "project_website/Task_1.html"
-          - text: "Task 2"
-            href: "project_website/Task_2.html"
-          - text: "Storyboard"
-            href: "project_website/storyboard.html"
-      - text: "ShinyApp"
-        menu:
-          - text: "Interactive Music Network Analysis"
-            href: "Take-home_Ex/Take-home_Ex03/Take-home_Ex03.2.html"
-
     right:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+      - text: Home
+        href: index.qmd
+      - text: Overview
+        href: Overview.html
+      - text: ShinyApp
+        menu:
+          - text: App & Guide
+            href: shinyapp.qmd
+      - text: Prototype
+        href: prototype.html
+      - text: Team
 
-  page-footer:
-    left: "© 2025 ISSS608 - Visual Analytics"
-    right: 
-      - text: "Built with Quarto"
 
 format:
   html:
-    theme: flatly
-    css: styles.css
+    theme: cosmo
     toc: true
-    toc-depth: 2
-    toc-title: "Page Contents"
-    toc-location: left
-    number-sections: true
-    highlight-style: github
-
-editor: visual
+    toc-location: right
+    css: styles.css

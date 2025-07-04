@@ -1,0 +1,19 @@
+---
+title: "Shiny App & User Guide"
+---
+
+## 🚀 Interactive Shiny App
+
+<iframe src="https://wshensi.shinyapps.io/shinyApp/" width="100%" height="600px" style="border: none;"></iframe>
+
+---
+
+## 📖 User Guide
+
+- 本 Shiny 应用展示了 Sailor Shift 单曲的传播路径与合作影响。
+- 左侧菜单栏允许你选择不同的边类型（如 `DirectlySamples`、`InStyleOf`）进行传播路径分析。
+- 可与网络节点交互，探索详细信息。
+
+<footer>
+  © 2025 Sailor Shift Network Visualization Project
+</footer>
