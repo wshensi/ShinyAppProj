@@ -9,7 +9,7 @@ website:
       - text: Home
         href: index.qmd
       - text: Overview
-        href: Overview.html
+        href: poster.pdf
       - text: ShinyApp
         menu:
           - text: App & Guide
