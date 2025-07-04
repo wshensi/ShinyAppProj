@@ -1,0 +1,13 @@
+---
+title: "Prototype"
+---
+
+## 🧠 Project Prototype
+
+以下是我们项目主代码的核心结构（Quarto 格式）：
+
+```{r, echo=TRUE}
+#| label: load-prototype
+#| eval: false
+# 引用子项目中的 proj(Final).qmd 作为文本展示
+readLines("project_website/proj(Final).qmd")

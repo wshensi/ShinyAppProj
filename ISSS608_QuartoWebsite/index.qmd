@@ -1,16 +1,24 @@
 ---
-title: "ISSS608-VAA Visual Analytics Project"
-description: ""
-date: "June 28, 2025"
-date-modified: "May 02, 2025"
-format: html
-author: "Wang Anqi, Wang Shensi, Yuan Yihao"
-editor: visual
-execute: 
-  eval: true
-  echo: true
-  warning: false
-  freeze: true
+page-layout: full
+format:
+  html:
+    css: styles.css
+execute:
+  echo: false
+  eval: false
 ---
 
-Welcome to **ISSS608 Visual Analytics and Applications**. In this website, you will find our project.
+::: {.full-background}
+
+::: {.overlay-text}
+
+<div class="main-title">🎵 Sailing the Tides of Oceanus Folk</div>
+<div class="subtitle">Visual Analysis of Sailor Shift's Career and Collaboration Network</div>
+
+:::
+
+:::
+
+<footer>
+  © 2025 Sailor Shift Network Visualization Project
+</footer>

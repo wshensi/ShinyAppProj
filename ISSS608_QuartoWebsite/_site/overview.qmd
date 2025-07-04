@@ -1,0 +1,11 @@
+---
+title: "Overview"
+---
+
+## 📌 Project Poster
+
+<embed src="poster.pdf" width="100%" height="800px" type="application/pdf">
+
+<footer>
+  © 2025 Sailor Shift Network Visualization Project
+</footer>
