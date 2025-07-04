@@ -6,15 +6,13 @@ body {
   background-color: #f9f9f9;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  height: 100%;
+  /* ✅ 删除 overflow: hidden 和 height: 100% */
 }
 
 html {
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  height: 100%;
+  /* ✅ 删除 overflow: hidden 和 height: 100% */
 }
 
 /* 标题默认样式（备用） */
@@ -54,22 +52,23 @@ footer {
   color: #ffffffcc;
 }
 
-/* 全屏背景图容器 */
+/* ✅ 全屏背景图容器，仅用于首页，控制在这里禁止滚动 */
 .full-background {
-  background-image: url('pic.jpg'); /* ← 你的背景图文件名 */
+  background-image: url('pic.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   position: relative;
+  overflow: hidden;
 }
 
 /* 左偏居中的标题容器 */
 .overlay-text {
   position: absolute;
   top: 50%;
-  left: 10%; /* ← 控制偏左程度 */
+  left: 10%;
   transform: translateY(-50%);
   color: white;
   text-align: left;
