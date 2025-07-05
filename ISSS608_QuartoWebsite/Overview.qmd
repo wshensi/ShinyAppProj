@@ -6,5 +6,5 @@ format: html
 
 ```{r}
 # 显示图片（自动适应网页宽度）
-knitr::include_graphics("images/poster.jpg")
+knitr::include_graphics("images/poster.jpeg")
 ```
